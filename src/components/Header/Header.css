@@ -1,0 +1,48 @@
+.header {
+    width: 100%;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    background-color: #5C5C5C;
+    min-height: 74px;
+    padding: 0 70px;
+}
+
+.header__logo {
+
+}
+
+.header__button-container {
+    margin-left: auto;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.header__button {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
+.header__button-auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 76px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    height: 32px;
+    color: #000000;
+    background-color: #2BE080;
+    border-radius: 3px;
+}
