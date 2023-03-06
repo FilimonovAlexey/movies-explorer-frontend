@@ -1,5 +1,7 @@
 .promo {
-    background-image: url("../../../images/text__COLOR_landing-logo.svg");
+    background-image: url("../../../images/promo-logo.svg");
+    background-position: bottom 84px right 70px;
+    background-repeat: no-repeat;
     background-color: #5C5C5C;
     max-width: 1280px;
 }
@@ -9,9 +11,15 @@
 }
 
 .promo__title {
-
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
 }
 
 .promo__caption {
-
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
 }
