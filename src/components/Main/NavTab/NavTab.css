@@ -1,0 +1,12 @@
+.nav-tab {
+    max-width: 1280px;
+    margin: auto;
+    padding-bottom: 75px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav-tab__link {
+
+}

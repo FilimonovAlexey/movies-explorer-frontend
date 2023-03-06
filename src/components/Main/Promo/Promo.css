@@ -1,0 +1,17 @@
+.promo {
+    background-image: url("../../../images/text__COLOR_landing-logo.svg");
+    background-color: #5C5C5C;
+    max-width: 1280px;
+}
+
+.promo__container {
+    padding: 75px 0 84px;
+}
+
+.promo__title {
+
+}
+
+.promo__caption {
+
+}
