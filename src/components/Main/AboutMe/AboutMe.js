@@ -1,6 +1,7 @@
 import React from "react";
 import "./AboutMe.css";
 import Avatar from "../../../images/aboutme-avatar.png";
+import Portfolio from "../Portfolio/Portfolio";
 
 function AboutMe() {
   return (
@@ -18,6 +19,7 @@ function AboutMe() {
         </div>
         <img className="aboutme__avatar" src={Avatar} alt="Филимонов Алексей"></img>
       </div>
+      <Portfolio/>
     </section>
   );
 }
