@@ -3,6 +3,7 @@ import "./Main.css";
 import Header from "../Header/Header";
 import Promo from "../Main/Promo/Promo"
 import AboutProject from "./AboutProject/AboutProject";
+import Techs from "./Techs/Techs"
 
 function Main() {
     return (
@@ -11,6 +12,7 @@ function Main() {
             <main>
                 <Promo/>
                 <AboutProject/>
+                <Techs/>
             </main>
         </div>
     );
