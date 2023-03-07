@@ -1,4 +1,4 @@
-.nav-tab {
+.navtab {
     padding-bottom: 75px;
     padding-left: 70px;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.nav-tab__btn {
+.navtab__button {
     width: 129px;
     height: 36px;
     box-sizing: border-box;

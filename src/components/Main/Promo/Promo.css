@@ -1,16 +1,20 @@
 .promo {
     background-image: url("../../../images/promo-logo.svg");
-    background-position: bottom 84px right 70px;
+    background-position: bottom 195px right 70px;
     background-repeat: no-repeat;
     background-color: #5C5C5C;
     max-width: 1280px;
 }
 
 .promo__container {
-    padding: 75px 0 84px;
+    padding: 75px 0 146px;
 }
 
 .promo__title {
+    margin: 0;
+    padding-left: 70px;
+    width: 640px;
+    height: 174px;
     color: #FFFFFF;
     font-weight: 400;
     font-size: 50px;
@@ -18,6 +22,11 @@
 }
 
 .promo__caption {
+    margin: 0;
+    padding-left: 70px;
+    padding-top: 36px;
+    width: 310px;
+    height: 32px;
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;
