@@ -1,0 +1,29 @@
+.searchform {
+  width: 100%;
+}
+
+.searchform__block {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #E8E8E8;
+}
+
+.searchform__input {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 34px;
+  text-align: center;
+  color: #A0A0A0;
+  border: #FFFFFF;
+}
+
+.searchform__button {
+  border-radius: 48px;
+  background-color: #2BE080;
+  background-image: url("../../../images/searchform__button-logo.png");
+  width: 80px;
+  height: 34px;
+  background-repeat: no-repeat;
+  background-position: bottom 50% right 50%;
+  border: #FFFFFF;
+}
