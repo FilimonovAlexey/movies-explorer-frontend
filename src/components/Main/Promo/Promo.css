@@ -34,12 +34,20 @@
 }
 
 @media screen and (max-width: 825px) {
+  .promo {
+
+  }
+
   .promo__title {
 
   }
 }
 
 @media screen and (max-width: 425px) {
+  .promo {
+    
+  }
+
   .promo__title {
     max-width: 300px;
   }
