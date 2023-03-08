@@ -13,7 +13,7 @@
 .promo__title {
     margin: 0;
     padding-left: 70px;
-    width: 640px;
+    max-width: 640px;
     height: 174px;
     color: #FFFFFF;
     font-weight: 400;
@@ -31,4 +31,16 @@
     font-size: 13px;
     line-height: 16px;
     color: #FFFFFF;
+}
+
+@media screen and (max-width: 825px) {
+  .promo__title {
+
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .promo__title {
+    max-width: 300px;
+  }
 }
