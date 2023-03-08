@@ -133,6 +133,7 @@
   }
 
   .aboutme__avatar {
+    margin: auto;
     width: 292px;
     height: 325px;
   }
