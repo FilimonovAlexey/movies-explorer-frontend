@@ -28,10 +28,6 @@
   align-items: center;
 }
 
-.footer__copyright {
-
-}
-
 .footer__link {
   list-style: none;
   padding: 0;
@@ -42,4 +38,38 @@
 .footer__link-item {
   text-decoration: none;
   color: #000000;
+}
+
+@media screen and (max-width: 769px) {
+  .footer {
+    background-color: #FFFFFF;
+  }
+}
+
+@media screen and (max-width: 525px){
+  .footer {
+    background-color: #FFFFFF;
+    padding: 0 10px;
+  }
+
+  .footer__block {
+    min-height: 253px;
+  }
+
+  .footer__caption {
+    min-width: 300px;
+    text-align: center;
+  }
+
+  .footer__info {
+    flex-direction: column-reverse;
+  }
+
+  .footer__link {
+    gap: 12px;
+    flex-direction: column;
+    text-align: center;
+    margin: 0;
+    padding: 30px 0 20px;
+  }
 }

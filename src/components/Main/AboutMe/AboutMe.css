@@ -100,6 +100,10 @@
     line-height: 18px;
   }
 
+  .aboutme__github {
+    margin: 87px 0 0;
+  }
+
   .aboutme__avatar {
     width: 255px;
     height: 307px;
@@ -115,6 +119,7 @@
     padding: 60px 0 69px;
     gap: 40px;
     flex-direction: column-reverse;
+    margin: 0;
   }
 
   .aboutme__name {
@@ -130,6 +135,10 @@
   .aboutme__bio {
     font-size: 11px;
     line-height: 16px;
+  }
+
+  .aboutme__github {
+    margin: 40px 0 0;
   }
 
   .aboutme__avatar {
