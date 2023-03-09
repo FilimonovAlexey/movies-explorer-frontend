@@ -66,6 +66,7 @@
 
 .aboutme__githab:hover {
   cursor: pointer;
+  opacity: 0.7;
 }
 
 .aboutme__avatar {

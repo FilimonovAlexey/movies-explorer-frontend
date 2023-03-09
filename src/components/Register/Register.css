@@ -108,6 +108,10 @@
   color: #FFFFFF;
 }
 
+.register__button:hover {
+  opacity: 0.7;
+}
+
 .register__link {
   display: block;
   text-decoration: none;
@@ -123,6 +127,10 @@
 .register__login {
   padding: 0 0 0 6px;
   color: #2BE080;
+}
+
+.register__login:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 769px){

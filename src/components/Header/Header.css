@@ -28,6 +28,10 @@
     color: #FFFFFF;
 }
 
+.header__button:hover {
+  opacity: 0.7;
+}
+
 .header__button-auth {
     display: flex;
     justify-content: center;
@@ -41,4 +45,8 @@
     color: #000000;
     background-color: #2BE080;
     border-radius: 3px;
+}
+
+.header__button-auth:hover {
+  opacity: 0.7;
 }
