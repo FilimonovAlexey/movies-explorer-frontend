@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Preloader from "./Preloader/Preloader";
 import SearchForm from "./SearchForm/SearchForm";
+import MoviesCardList from "./MoviesCardList/MoviesCardList";
 
 function Movies() {
   return(
@@ -11,6 +12,8 @@ function Movies() {
       <Header/>
         <main>
           <SearchForm/>
+          <MoviesCardList/>
+          <button className="movies__button">Еще</button>
         </main>
       <Footer/>
     </>
