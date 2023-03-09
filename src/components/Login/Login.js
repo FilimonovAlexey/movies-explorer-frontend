@@ -7,7 +7,6 @@ function Login() {
   return(
     <section className="login">
       <div className="login__box">
-
             <div className="login__logo-box">
               <Link to="/">
                 <img src={logo} alt="Логотип" className="login__logo" />

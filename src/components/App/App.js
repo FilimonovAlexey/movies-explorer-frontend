@@ -5,6 +5,7 @@ import Main from "../Main/Main"
 import Page404 from '../Page404/Page404';
 import Movies from '../Movies/Movies';
 import Login from '../Login/Login';
+import Register from '../Register/Register';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route exact path="/" element={<Main/>} />
           <Route exact path="/Movies" element={<Movies/>} />
           <Route exact path="/signin" element={<Login/>} />
+          <Route exact path="/signup" element={<Register/>} />
           <Route exact path="*" element={<Page404/>} />
         </Routes>
       </div>
