@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import Preloader from "./Preloader/Preloader";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
+import filmscards from "../../utils/FilmsCards";
 
 function Movies() {
   return(
@@ -12,7 +13,7 @@ function Movies() {
       <Header/>
         <main>
           <SearchForm/>
-          <MoviesCardList/>
+          <MoviesCardList />
           <button className="movies__button">Еще</button>
         </main>
       <Footer/>

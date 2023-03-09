@@ -1,13 +1,13 @@
 .promo {
-    background-image: url("../../../images/promo-logo.svg");
-    background-position: bottom 195px right 70px;
-    background-repeat: no-repeat;
-    background-color: #5C5C5C;
-    max-width: 1280px;
+  background-image: url("../../../images/promo-logo.svg");
+  background-position: bottom 195px right 70px;
+  background-repeat: no-repeat;
+  background-color: #5C5C5C;
+  max-width: 1280px;
 }
 
 .promo__container {
-    padding: 75px 0 146px;
+  padding: 75px 0 146px;
 }
 
 .promo__title {
@@ -33,21 +33,7 @@
     color: #FFFFFF;
 }
 
-@media screen and (max-width: 825px) {
-  .promo {
-
-  }
-
-  .promo__title {
-
-  }
-}
-
 @media screen and (max-width: 425px) {
-  .promo {
-    
-  }
-
   .promo__title {
     max-width: 300px;
   }
