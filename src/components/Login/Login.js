@@ -24,7 +24,7 @@ function Login() {
                          required 
                   />
               </label>
-              <div className="logo__line"></div>
+              <div className="login__line"></div>
               <label>
                   <span className="login__password">Пароль</span>
                   <input className="login__input" 
@@ -35,7 +35,7 @@ function Login() {
                          required 
                    />
               </label>
-              <div className="logo__line"></div>
+              <div className="login__line"></div>
           </div>
           <div className="login__button-box">
               <button className="login__button" type="submit">Войти</button>
