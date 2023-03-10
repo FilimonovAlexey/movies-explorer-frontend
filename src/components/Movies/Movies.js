@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Movies.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -8,9 +8,10 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import filmscards from "../../utils/FilmsCards";
 
 function Movies() {
+
   return(
     <>
-      <Header/>
+      <Header loged={true}/>
         <main>
           <SearchForm/>
           <MoviesCardList />
