@@ -1,9 +1,12 @@
 import React from "react";
 import "./Profile.css";
 import { Link } from 'react-router-dom';
+import Header from "../Header/Header";
 
 function Profile() {
   return(
+    <>
+    <Header loged={true}/>
     <div className='profile__content'>
       <h2 className='profile__title'>Привет, Виталий!</h2>
       <form className='profile__form'>
@@ -33,6 +36,7 @@ function Profile() {
           </div>
       </form>
     </div>
+    </>
   );
 }
 
