@@ -1,0 +1,65 @@
+.header__auth {
+  width: 100%;
+}
+
+.header__auth-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  background-color: #FFFFFF;
+  min-height: 74px;
+  padding: 0 70px;
+}
+
+.header__button-box_films {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.header__button-films {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.header__button-films:hover {
+  opacity: 0.7;
+}
+
+.header__button-savefilms {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: right;
+  color: #000000;
+  text-decoration: none;
+}
+
+.header__button-savefilms:hover {
+  opacity: 0.7;
+}
+
+.header__account-button {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+  text-decoration: none;
+  margin-left: 30px;
+  border: 2px solid #AAAAAA;
+  border-radius: 50px;
+  width: 100px;
+  height: 32px;
+}
+
+.header__account-button:hover {
+  opacity: 0.7;
+}
