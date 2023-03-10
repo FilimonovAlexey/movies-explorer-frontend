@@ -21,3 +21,11 @@
 .navtab__button:hover {
     opacity: 0.7;
 }
+
+@media screen and (max-width: 769px) {
+  .navtab {
+    width: calc(100% - 88px);
+    justify-content: center;
+    margin: 0;
+  }
+}

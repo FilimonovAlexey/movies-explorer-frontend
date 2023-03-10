@@ -14,7 +14,6 @@
     margin: 0;
     padding-left: 70px;
     max-width: 640px;
-    height: 174px;
     color: #FFFFFF;
     font-weight: 400;
     font-size: 50px;
@@ -33,8 +32,29 @@
     color: #FFFFFF;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 769px) {
+  .promo {
+    background-position: center 140px;
+  }
+
+  .promo__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
   .promo__title {
-    max-width: 300px;
+    width: calc(100% - 88px);
+    padding: 0;
+    margin: 417px auto 0;
+    font-size: 40px;
+    line-height: 50px;
+  }
+
+  .promo__caption {
+    text-align: center;
+    padding: 0;
+    margin: 22px auto 0;
   }
 }
