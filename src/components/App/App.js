@@ -7,6 +7,7 @@ import Movies from '../Movies/Movies';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
+import SavedMovies from '../SavedMovies/SavedMovies';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Main/>} />
           <Route exact path="/Movies" element={<Movies/>} />
+          <Route exact path="/saved-movies" element={<SavedMovies/>} />
           <Route exact path="/signin" element={<Login/>} />
           <Route exact path="/signup" element={<Register/>} />
           <Route exact path="/profile" element={<Profile/>} />
