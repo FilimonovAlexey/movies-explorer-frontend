@@ -42,6 +42,7 @@
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    padding: 75px 0 92px;
   }
 
   .promo__title {
@@ -57,4 +58,31 @@
     padding: 0;
     margin: 22px auto 0;
   }
+}
+
+@media screen and (max-width: 525px){
+  .promo {
+    background-position: center 70px;
+    background-size: 210px 206px;
+  }
+
+  .promo__title {
+    width: calc(100% - 20px);
+    padding: 0;
+    margin: 250px auto 0;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  .promo__container {
+    padding: 75px 0 80px;
+  }
+
+  .promo__caption {
+    text-align: center;
+    padding: 0;
+    margin: 22px auto 0;
+  }
+  
 }
