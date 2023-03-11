@@ -12,7 +12,7 @@ function Movies() {
   return(
     <>
       <Header loged={true}/>
-        <main>
+        <main className="main__box">
           <SearchForm/>
           <MoviesCardList cards={cards}/>
           <button className="movies__button">Еще</button>
