@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import Preloader from "./Preloader/Preloader";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
-import filmscards from "../../utils/FilmsCards";
+import cards from "../../utils/FilmsCards";
 
 function Movies() {
 
@@ -14,7 +14,7 @@ function Movies() {
       <Header loged={true}/>
         <main>
           <SearchForm/>
-          <MoviesCardList />
+          <MoviesCardList cards={cards}/>
           <button className="movies__button">Еще</button>
         </main>
       <Footer/>
