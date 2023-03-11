@@ -1,0 +1,13 @@
+.movieCardList {
+  display: flex;
+  flex-direction: column;
+}
+
+.movieCardList__box {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 360px);
+  column-gap: 28px;
+  row-gap: 60px;
+  justify-content: center;
+  padding: 70px 0 28px;
+}

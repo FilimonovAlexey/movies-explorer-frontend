@@ -4,8 +4,8 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 
 function MoviesCardList({cards}) {
   return(
-    <section className='movieCardList'>
-      <div className='movieCardList__container'>
+    <section className="movieCardList">
+      <div className="movieCardList__box">
           {cards.map((card) => (
               <MoviesCard key={card.id} card={card} />
           ))}
