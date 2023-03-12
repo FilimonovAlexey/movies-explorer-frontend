@@ -18,7 +18,7 @@
     column-gap: 30px;
     row-gap: 47px;
     justify-content: center;
-    padding: 70px 0 30px;
+    padding: 70px 30px 50px 30px;
     max-width: 708px;
   }
 }
