@@ -50,3 +50,27 @@
 .header__button-auth:hover {
   opacity: 0.7;
 }
+
+@media screen and (max-width: 769px){
+  .header__container {
+    padding: 0 30px;
+  }
+}
+
+@media screen and (max-width: 525px) {
+  .header__container {
+    padding: 0 14px;
+  }
+
+  .header__button-container{
+    gap: 14px;
+  }
+
+  .header__button {
+    font-size: 10px;
+  }
+
+  .header__button-auth {
+    font-size: 10px;
+  }
+}
