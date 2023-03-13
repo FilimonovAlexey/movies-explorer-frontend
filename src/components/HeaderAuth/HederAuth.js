@@ -3,6 +3,7 @@ import "./HeaderAuth.css";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import account from "../../images/account.svg"
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 function HederAuth() {
   return(
@@ -11,6 +12,7 @@ function HederAuth() {
         <Link to="/" className="header__auth-logo">
           <img src={logo} alt="логотип" />
         </Link>
+        <BurgerMenu />
         <div className="header__button-box_films">
           <Link to="/movies" className="header__button-films">
             Фильмы
