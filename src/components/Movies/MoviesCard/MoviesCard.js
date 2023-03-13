@@ -30,7 +30,7 @@ function MoviesCard({card}) {
                   {isSaved ? <img className="moviesCard__delete" alt="добавлено" src={saveButton} /> :
                       <img className="moviesCard__add" alt="добавить" src={saveFilmButton} />}
               </button>}
-          <p className="moviesCard__duration">{card.time}</p>
+          <p className="moviesCard__duration">{card.duration}</p>
       </div>
     </div>
   );
