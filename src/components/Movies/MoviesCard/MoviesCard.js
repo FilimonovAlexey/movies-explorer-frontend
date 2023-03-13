@@ -9,15 +9,17 @@ function MoviesCard({card}) {
   const location = useLocation();
   const [isSaved, setIsSaved] = useState(false);
 
+  console.log('MoviesCard card', card);
+
   function handleClick() {
       setIsSaved(!isSaved);
   }
 
   return(
     <div className="moviesCard">
-      <img className="moviesCard__image" src={card.image} alt="постер фильма" />
+      <img className="moviesCard__image" src={card.image.url} alt="постер фильма" />
       <div className="moviesCard__container">
-          <h2 className="moviesCard__title">{card.name}</h2>
+          <h2 className="moviesCard__title">{card.nameRU}</h2>
           {location.pathname === "/saved-movies" &&
               <button type="button" aria-label="удалить фильм" className="moviesCard__button-del" onClick={handleClick}>
                   <img className="moviesCard__delete" alt="удалить" src={deleteFilmButton} />
