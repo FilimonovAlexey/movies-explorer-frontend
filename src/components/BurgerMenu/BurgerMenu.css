@@ -5,6 +5,7 @@
 .hamburger-menu__button {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .hamburger-menu__button:hover {
@@ -14,6 +15,7 @@
 .hamburger-menu__close {
   background-color: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .hamburger-menu__close:hover {
