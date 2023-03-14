@@ -9,15 +9,13 @@ function MoviesCard({card}) {
   const location = useLocation();
   const [isSaved, setIsSaved] = useState(false);
 
-  console.log('MoviesCard card', card);
-
   function handleClick() {
       setIsSaved(!isSaved);
   }
 
   return(
     <div className="moviesCard">
-      <img className="moviesCard__image" src={`${'https://api.nomoreparties.co'}${card.image.url}`} alt="постер фильма" />
+      <img className="moviesCard__image" src={`${'https://api.nomoreparties.co'}${card.image.url}`} alt={`Постер ${card.nameRU}`} />
       <div className="moviesCard__container">
           <h2 className="moviesCard__title">{card.nameRU}</h2>
           {location.pathname === "/saved-movies" &&

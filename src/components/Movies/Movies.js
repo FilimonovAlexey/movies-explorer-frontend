@@ -16,7 +16,6 @@ function Movies() {
     const fetchData = async () => {
       const data = await getMovies();
       setCards(data);
-      // console.log('film ',data)
     }
     fetchData();
   }, []);
