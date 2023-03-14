@@ -28,7 +28,7 @@ function MoviesCard({card}) {
                   {isSaved ? <img className="moviesCard__delete" alt="добавлено" src={saveButton} /> :
                       <img className="moviesCard__add" alt="добавить" src={saveFilmButton} />}
               </button>}
-          <p className="moviesCard__duration">{card.duration}</p>
+          <p className="moviesCard__duration">{Math.round(card.duration/60)}ч {card.duration - 60*Math.round(card.duration/60)}м</p>
       </div>
     </div>
   );
