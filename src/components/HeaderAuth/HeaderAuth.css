@@ -68,5 +68,9 @@
   .header__button-box_films {
     display: none;
   }
+
+  .header__auth-container {
+    padding: 0 30px;
+  }
   
 }
