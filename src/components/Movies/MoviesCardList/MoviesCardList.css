@@ -14,7 +14,7 @@
 
 @media screen and (max-width: 769px) {
   .movieCardList__box{
-    grid-template-columns: repeat(2, 339px);
+    grid-template-columns: repeat(auto-fill, 339px);
     column-gap: 30px;
     row-gap: 47px;
     justify-content: center;
