@@ -28,8 +28,10 @@ function BurgerMenu() {
             <Link className="hamburger-menu__link" to="/saved-movies">Сохранённые фильмы</Link>
         </nav>
         <nav className='hamburger-menu__footer'>
+          <div className="hamburger-menu__footer-box">
             <Link className="hamburger-menu__login" to="/profile">Аккаунт</Link>
             <Link className="hamburger-menu__account" to="/profile" src={account} alt='Логотип аккаунта'></Link>
+          </div>
         </nav>
       </div>}
     </div>

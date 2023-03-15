@@ -5,7 +5,6 @@ import Footer from "../Footer/Footer";
 import Preloader from "./Preloader/Preloader";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
-// import cards from "../../utils/FilmsCards";
 import { getMovies } from "../../utils/ApiFilm/ApiDilm"; 
 
 function Movies() {
