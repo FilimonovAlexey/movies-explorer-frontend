@@ -1,7 +1,7 @@
 .footer {
   background-color: #FAFAFA;
   padding: 0 70px;
-  width: 1140px;
+  /* width: 1140px; */
 }
 
 .footer__block {
@@ -48,7 +48,7 @@
 @media screen and (max-width: 769px) {
   .footer {
     background-color: #FFFFFF;
-    width: 708px;
+    /* width: 708px; */
     padding: 0 30px;
   }
 }
@@ -57,7 +57,7 @@
   .footer {
     background-color: #FFFFFF;
     padding: 0 10px;
-    width: 280px;
+    /* width: 280px; */
   }
 
   .footer__block {
