@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./BurgerMenu.css";
-import account from "../../images/account.svg";
+import account from "../../images/account.svg"
 import burgermenuLogo from "../../images/burgermenu-logo.svg";
 import burgermenuButtonClose from "../../images/burgermenu-close.svg";
 import { Link } from "react-router-dom";

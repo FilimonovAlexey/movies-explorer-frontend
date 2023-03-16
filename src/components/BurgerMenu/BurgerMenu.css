@@ -94,11 +94,18 @@
     line-height: 16px;
     color: #000000;
     text-decoration: none;
-    margin-left: 30px;
     border: 2px solid #AAAAAA;
     border-radius: 50px;
     width: 100px;
     height: 32px;
+  }
+
+  .hamburger-menu__login {
+    text-decoration: none;
+  }
+  
+  .hamburger-menu__link {
+    text-decoration: none;
   }
 }
 

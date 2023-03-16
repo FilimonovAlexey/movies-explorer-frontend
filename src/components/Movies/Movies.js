@@ -7,9 +7,11 @@ import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import { getMovies } from "../../utils/ApiFilm/ApiDilm"; 
 
-function Movies() {
+function Movies(props) {
+  const { searchText } = props;
 
   const [cards, setCards] = useState([])
+  const [films, setFilms] = useState([])
   
   useEffect(() => {
     const fetchData = async () => {
@@ -19,12 +21,23 @@ function Movies() {
     fetchData();
   }, []);
 
+  const findeMovies = (text) => {
+    let films =[]
+    if(text.length < 2) {
+      setFilms(cards)
+    } else {
+      const a = text.toLowerCase()
+      setFilms(cards.filter((obg) => obg.nameRU.toLowerCase().indexOf(a) !== -1 || obg.nameEN.toLowerCase().indexOf(a) !== -1))
+    };
+    console.log('findeMovies ',films)
+  }
+
   return(
     <>
       <Header loged={true}/>
         <main className="main__box">
-          <SearchForm/>
-          <MoviesCardList cards={cards}/>
+          <SearchForm {...props} findeMovies={findeMovies}/>
+          <MoviesCardList cards={films}/>
           <button className="movies__button">Еще</button>
         </main>
       <Footer/>
