@@ -12,6 +12,7 @@ function Movies(props) {
 
   const [cards, setCards] = useState([])
   const [films, setFilms] = useState([])
+  const [switchCheked, setSwitchCheked] = useState(false)
   
   useEffect(() => {
     const fetchData = async () => {
@@ -26,18 +27,17 @@ function Movies(props) {
     if(text.length < 2) {
       setFilms(cards)
     } else {
-      const a = text.toLowerCase()
+      const a = text.toLowerCase().trim()
       setFilms(cards.filter((obg) => obg.nameRU.toLowerCase().indexOf(a) !== -1 || obg.nameEN.toLowerCase().indexOf(a) !== -1))
     };
-    console.log('findeMovies ',films)
   }
 
   return(
     <>
       <Header loged={true}/>
         <main className="main__box">
-          <SearchForm {...props} findeMovies={findeMovies}/>
-          <MoviesCardList cards={films}/>
+          <SearchForm {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
+          <MoviesCardList cards={films} switchCheked={switchCheked}/>
           <button className="movies__button">Еще</button>
         </main>
       <Footer/>

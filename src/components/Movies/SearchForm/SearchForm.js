@@ -3,7 +3,7 @@ import "./SearchForm.css"
 
 function SearchForm(props) {
 
-  const {searchText, searchHandler, findeMovies} = props;
+  const {searchText, searchHandler, findeMovies, switchCheked, setSwitchCheked} = props;
 
   return (
       <form className="searchform" onSubmit={(e)=>{e.preventDefault()}}>
@@ -23,7 +23,7 @@ function SearchForm(props) {
         </div>
 
         <label className="searchform__switch">
-          <input className="searchform__checkbox-input" type="checkbox" />
+          <input className="searchform__checkbox-input" type="checkbox" onChange={(event)=>setSwitchCheked(!event.target.checked)} />
           <div className="searchform__checkbox-custom"></div>
           <p className="searchform__shorts">Короткометражки</p>
         </label>
