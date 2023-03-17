@@ -3,7 +3,7 @@ import "./SearchForm.css"
 
 function SearchForm(props) {
 
-  const {searchText, searchHandler, findeMovies, switchCheked, setSwitchCheked} = props;
+  const {searchText, searchHandler, findeMovies, setSwitchCheked} = props;
 
   return (
       <form className="searchform" onSubmit={(e)=>{e.preventDefault()}}>

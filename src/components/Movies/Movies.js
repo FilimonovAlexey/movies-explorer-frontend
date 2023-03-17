@@ -8,28 +8,33 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import { getMovies } from "../../utils/ApiFilm/ApiFilm"; 
 
 function Movies(props) {
-  const { searchText } = props;
+  // const { searchText } = props;
 
   const [cards, setCards] = useState([])
   const [films, setFilms] = useState([])
+  const [preloader, setPreloader] = useState(false)
   const [switchCheked, setSwitchCheked] = useState(false)
   
   useEffect(() => {
+    setPreloader(true)
     const fetchData = async () => {
       const data = await getMovies();
       setCards(data);
+      setPreloader(false)
     }
     fetchData();
   }, []);
 
   const findeMovies = (text) => {
-    let films =[]
+    setPreloader(true)
+    // let films =[]
     if(text.length < 2) {
       setFilms(cards)
     } else {
       const a = text.toLowerCase().trim()
       setFilms(cards.filter((obg) => obg.nameRU.toLowerCase().indexOf(a) !== -1 || obg.nameEN.toLowerCase().indexOf(a) !== -1))
     };
+    setPreloader(false)
   }
 
   return(
@@ -37,7 +42,8 @@ function Movies(props) {
       <Header loged={true}/>
         <main className="main__box">
           <SearchForm {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
-          <MoviesCardList cards={films} switchCheked={switchCheked}/>
+          {preloader && <Preloader />}
+          {!preloader && <MoviesCardList cards={films} switchCheked={switchCheked}/>}
           <button className="movies__button">Еще</button>
         </main>
       <Footer/>

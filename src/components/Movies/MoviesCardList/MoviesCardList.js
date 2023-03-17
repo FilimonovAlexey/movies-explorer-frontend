@@ -8,9 +8,10 @@ function MoviesCardList({cards, switchCheked}) {
   return(
     <section className="movieCardList">
       <div className="movieCardList__box">
-          {films.map((card) => (
+          {films.length ? films.map((card) => (
               <MoviesCard key={card.id} card={card} />
-          ))}
+          )) : <>Кина не будет</>}
+          
       </div>
     </section>
   );
