@@ -10,7 +10,7 @@ function MoviesCardList({cards, switchCheked}) {
       <div className="movieCardList__box">
           {films.length ? films.map((card) => (
               <MoviesCard key={card.id} card={card} />
-          )) : <>Кина не будет</>}
+          )) : <>Ничего не найдено!</>}
           
       </div>
     </section>

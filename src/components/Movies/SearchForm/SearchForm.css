@@ -72,7 +72,7 @@
 .searchform__checkbox-custom {
   width: 34px;
   height: 14px;
-  background: #2BE080;
+  background-color: #ebebeb;
   border-radius: 20px;
   position: relative;
   transition: 0.3s;
@@ -86,16 +86,16 @@
   height: 10px;
   border-radius: 100%;
   top: 15%;
-  left: 60%;
+  left: 8.33%; 
   background-color: #FFFFFF;
   transition: 0.3s;
 }
 
 .searchform__checkbox-input:checked ~ .searchform__checkbox-custom {
-  background-color: #ebebeb;
+  background: #2BE080;
 }
 .searchform__checkbox-input:checked ~ .searchform__checkbox-custom::after {
-  left: 8.33%;
+  left: 60%;
 }
 
 @media screen and (max-width: 769px) {
