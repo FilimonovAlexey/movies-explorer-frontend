@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import Preloader from "./Preloader/Preloader";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
-import { getMovies } from "../../utils/ApiFilm/ApiDilm"; 
+import { getMovies } from "../../utils/ApiFilm/ApiFilm"; 
 
 function Movies(props) {
   const { searchText } = props;
