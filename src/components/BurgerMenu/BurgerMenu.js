@@ -33,8 +33,10 @@ function BurgerMenu() {
           </nav>
           <nav className='hamburger-menu__footer'>
             <div className="hamburger-menu__footer-box">
+              <Link to="/profile">
+                <img src={account} alt="Логотип аккаунта" className="hamburger-menu__account" />
+              </Link>
               <Link className="hamburger-menu__login" to="/profile">Аккаунт</Link>
-              <Link className="hamburger-menu__account" to="/profile" src={account} alt='Логотип аккаунта'></Link>
             </div>
           </nav>
         </div>
