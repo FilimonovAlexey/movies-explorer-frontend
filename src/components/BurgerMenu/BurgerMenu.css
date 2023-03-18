@@ -55,7 +55,7 @@
     left:0;
     background-color: rgba(0, 0, 0, 0.3);
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     z-index: 1;
   }
 
@@ -86,12 +86,15 @@
   }
 
   .hamburger-menu__footer {
+    display: flex;
+    justify-content: center;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
     line-height: 16px;
     color: #000000;
-    margin: 0 210px 90px 210px;
+    padding-bottom: 90px;
+    margin: 0;
   }
 
   .hamburger-menu__footer-box {
@@ -112,9 +115,16 @@
 
   .hamburger-menu__login {
     text-decoration: none;
+    color: #000000;
   }
   
   .hamburger-menu__link {
     text-decoration: none;
+    color: #000000;
+    padding-bottom: 7px;
+  }
+
+  .hamburger-menu__link:hover {
+    border-bottom: 2px solid #000000;
   }
 }
