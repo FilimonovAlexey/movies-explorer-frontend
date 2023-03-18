@@ -14,7 +14,7 @@ function Movies(props) {
   const [preloader, setPreloader] = useState(false)
   const [counterCard, setCounterCard] = useState(0)
   const [switchCheked, setSwitchCheked] = useState(false)
-  const { width, currentScreen } = useResize();
+  const { currentScreen } = useResize();
 
   useEffect(()=>{
     switch(currentScreen) {
@@ -59,8 +59,15 @@ function Movies(props) {
     };
     setPreloader(false)
   }
-
-  // console.log('counterCard ', counterCard)
+  const addMoviesCard = () =>{
+    let add = 3;
+    if(currentScreen === 'SCREEN_MD'){
+      add = 2
+    } else if(currentScreen === 'SCREEN_SM'){
+      add = 1
+    }
+    setCounterCard(prev => prev + add)
+  }
 
   return(
     <>
@@ -69,7 +76,7 @@ function Movies(props) {
           <SearchForm {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
           {preloader && <Preloader />}
           {!preloader && <MoviesCardList cards={films} switchCheked={switchCheked} counterCard={counterCard}/>}
-          <button className="movies__button">Еще</button>
+          <button className="movies__button" onClick={addMoviesCard}>Еще</button>
         </main>
       <Footer/>
     </>
