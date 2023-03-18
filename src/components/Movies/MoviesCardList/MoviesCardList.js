@@ -2,9 +2,10 @@ import React, {useEffect} from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({cards, switchCheked}) {
+function MoviesCardList({cards, switchCheked, counterCard}) {
   let films = cards;
   if(switchCheked){films =  cards.filter(film => film.duration < 41)}
+  films = films.filter((a, index)=> index < counterCard)
   return(
     <section className="movieCardList">
       <div className="movieCardList__box">
