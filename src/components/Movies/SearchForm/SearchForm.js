@@ -19,7 +19,6 @@ function SearchForm(props) {
             value={searchText}
           />
           <button className="searchform__button" onClick={()=>findeMovies(searchText)}></button>
-          <div className="searchform__line"></div>
         </div>
 
         <label className="searchform__switch">
