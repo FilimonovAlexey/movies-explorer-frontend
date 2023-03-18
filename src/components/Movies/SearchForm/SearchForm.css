@@ -36,6 +36,7 @@
   background-repeat: no-repeat;
   background-position: bottom 50% right 50%;
   border: #FFFFFF;
+  cursor: pointer;
 }
 
 .searchform__button:hover {
