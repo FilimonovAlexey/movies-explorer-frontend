@@ -7,13 +7,6 @@ return fetch('https://moviesapi.filimonovalexey.nomoredomains.rocks/signup', {
     },
     body: JSON.stringify(user)
   }).then(response => response.json())
-    // .then(data => {
-    //     // console.log('signup data ', data)
-    //   // сохраняем полученный токен в localStorage или в cookies
-    // //   localStorage.setItem('token', data.token);
-    // }).catch(error=>{
-    //     console.log('signup error ', error)
-    // });
 }
 
 export const signin = (user) => {
@@ -38,6 +31,5 @@ export const f00 = () => {
       })
         .then(response => response.json())
         .then(data => {
-          // обрабатываем полученные данные
         });
 }

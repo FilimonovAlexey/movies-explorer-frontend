@@ -5,8 +5,8 @@ import Footer from "../Footer/Footer";
 import Preloader from "./Preloader/Preloader";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
-import { getMovies } from "../../utils/ApiFilm/ApiFilm";
-import { useResize } from "../../utils/UseResize/UseResize";
+import { getMovies } from "../../utils/Api/ApiFilm";
+import { useResize } from "../../utils/hooks/UseResize";
 
 function Movies(props) {
   const [cards, setCards] = useState([])

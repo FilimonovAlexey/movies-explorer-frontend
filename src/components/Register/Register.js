@@ -2,18 +2,7 @@ import React, { useState} from "react";
 import "./Register.css";
 import logo from "../../images/logo.svg";
 import { Link, useNavigate  } from "react-router-dom";
-import { signup } from "../../utils/MainApi/MainApi";
-
-// import { useNavigate } from "react-router-dom";
-// let //       return navigate("/");
- 
-
-// useEffect(() => {
-//    if (LoggedIn){
-//       return navigate("/");
-//    }
-// },[LoggedIn]);
-
+import { signup } from "../../utils/Api/MainApi";
 
 function Register() {
   const [name, setName] = useState('')
@@ -26,8 +15,6 @@ function Register() {
     .then(data => {
       navigate("/signin")
       console.log('hendleRegister', data)
-    // сохраняем полученный токен в localStorage или в cookies
-  //   localStorage.setItem('token', data.token);
   }).catch(error=>{
       console.log('hendleRegister error ', error)
   });
