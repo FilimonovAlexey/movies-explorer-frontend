@@ -75,6 +75,15 @@
   line-height: 17px;
   color: #000000;
   align-items: center;
+  outline: 0;
+}
+
+.login__input:invalid {
+  border-bottom: 1px solid #EE3465;
+}
+
+.login__input:valid {
+  border-bottom: 1px solid #2BE080;
 }
 
 .login__line {

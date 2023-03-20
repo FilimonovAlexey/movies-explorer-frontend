@@ -31,7 +31,7 @@ function Register() {
 
         <h2 className="register__title">Доброе пожаловать!</h2>
 
-        <form className="register__form" name="register-form" onSubmit={e=> e.preventDefault()}>
+        <form noValidate className="register__form" name="register-form" onSubmit={e=> e.preventDefault()}>
           <div className="register__field">
           <label>
                   <span className="register__name">Имя</span>
@@ -39,8 +39,9 @@ function Register() {
                          type="text" 
                          name="name" 
                          placeholder="Введите Ваше Имя" 
-                         minLength="2" 
-                         required 
+                         minLength={2}
+                         maxLength={30}
+                         required={true}
                          value={name}
                          onChange={e => setName(e.target.value)}
                    />
@@ -52,7 +53,9 @@ function Register() {
                          type="email" 
                          name="email" 
                          placeholder="Введите Ваш E-mail" 
-                         required
+                         required={true}
+                         minLength={2}
+                         maxLength={30}
                          value={email}
                          onChange={e => setEmail(e.target.value)}
                   />
@@ -64,8 +67,8 @@ function Register() {
                          type="password" 
                          name="password" 
                          placeholder="Введите Ваш Пароль" 
-                         minLength="4" 
-                         required
+                         minLength={4}
+                         required={true}
                          value={password}
                          onChange={e => setPassword(e.target.value)}
                    />

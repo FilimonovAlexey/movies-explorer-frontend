@@ -32,7 +32,7 @@ function Login() {
               </Link>
             </div>
         <h2 className="login__title">Рады видеть!</h2>
-        <form className="login__form" name="login-form" onSubmit={e=> e.preventDefault()}>
+        <form noValidate className="login__form" name="login-form" onSubmit={e=> e.preventDefault()}>
           <div className="login__field">
               <label>
                   <span className="login__email">E-mail</span>
@@ -40,7 +40,9 @@ function Login() {
                          type="email" 
                          name="email" 
                          placeholder="Введите Ваш E-mail" 
-                         required
+                         minLength={2}
+                         maxLength={30}
+                         required={true}
                          value={email}
                          onChange={e => setEmail(e.target.value)}
                   />
@@ -52,8 +54,9 @@ function Login() {
                          type="password" 
                          name="password" 
                          placeholder="Введите Ваш Пароль" 
-                         minLength="4" 
-                         required
+                         minLength={2}
+                         maxLength={30}
+                         required={true}
                          value={password}
                          onChange={e => setPassword(e.target.value)}
                    />
