@@ -1,35 +1,23 @@
+const options = {
+  baseUrl: "https://moviesapi.filimonovalexey.nomoredomains.rocks",
+  headers: {
+    "Content-type": "application/json",
+  },
+};
 
 export const signup = (user) => {
-return fetch('https://moviesapi.filimonovalexey.nomoredomains.rocks/signup', {
+return fetch(`${options.baseUrl}/signup`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: options.headers,
     body: JSON.stringify(user)
   }).then(response => response.json())
 }
 
 export const signin = (user) => {
-  return fetch('https://moviesapi.filimonovalexey.nomoredomains.rocks/signin', {
+  return fetch(`${options.baseUrl}/signin`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: options.headers,
       body: JSON.stringify(user)
     })
       .then(response => response.json())
   }
-
-
-const token = localStorage.getItem('token');
-    
-export const f00 = () => {
-    fetch('/api/films', {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-        });
-}

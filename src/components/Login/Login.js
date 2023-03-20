@@ -8,7 +8,8 @@ function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  const navigate = useNavigate();
+  
   const hendleLogin = () => {
     signin({email, password})
     .then(data => {
@@ -17,7 +18,7 @@ function Login() {
         console.log('signin error ', error)
     });
   }
-  const navigate = useNavigate();
+  
   return(
     <section className="login">
       <div className="login__box">
