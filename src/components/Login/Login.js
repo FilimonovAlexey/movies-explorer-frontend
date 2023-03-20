@@ -13,6 +13,7 @@ function Login() {
   const hendleLogin = () => {
     signin({email, password})
     .then(data => {
+      localStorage.setItem('token', data.token)
       navigate("/movies")
     }).catch(error=>{
         console.log('signin error ', error)

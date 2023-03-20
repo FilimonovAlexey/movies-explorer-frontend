@@ -7,7 +7,7 @@ import { CurrentUserContext } from "../App/App";
 function Profile() {
   const { user, setUser } = useContext(CurrentUserContext);
   
-  const [profile, setProfile] = useState(user)
+  const [profile, setProfile] = useState(user || {name: '', email: ''})
   const [isUpdate, setIsUpdate] = useState(false)
 
   useEffect(()=>{
