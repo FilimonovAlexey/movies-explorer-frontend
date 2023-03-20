@@ -1,14 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Profile.css";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from "../Header/Header";
 import { getProfile, updateProfile } from "../../utils/Api/MainApi"
 import { CurrentUserContext } from "../App/App";
 function Profile() {
-  const { user, setUser } = useContext(CurrentUserContext);
+  const { user, setUser, setLogedId } = useContext(CurrentUserContext);
   
   const [profile, setProfile] = useState(user || {name: '', email: ''})
   const [isUpdate, setIsUpdate] = useState(false)
+
+  const navigate = useNavigate();
 
   useEffect(()=>{
     getProfile()
@@ -37,6 +39,12 @@ function Profile() {
     }).catch(error=>{
         console.error('handleProfileUpdate error ', error)
     });
+  }
+
+  const signOut = () => {
+    localStorage.removeItem("token");
+    setLogedId(false);
+    navigate("/");
   }
 
   return(
@@ -72,7 +80,7 @@ function Profile() {
             </fieldset>
             <div className='profile__nav'>
                 <button className='profile__button_edit' type='submit' onClick={()=>handleProfileUpdate(profile)} disabled={!isUpdate}>Редактировать</button>
-                <Link className='profile__button_signin' to='/signin'>Выйти из аккаунта</Link>
+                <button className='profile__button_signin' onClick={signOut} >Выйти из аккаунта</button>
             </div>
         </form>
       </div>

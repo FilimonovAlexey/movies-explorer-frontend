@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import logo from "../../images/logo.svg";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import HederAuth from "../HeaderAuth/HederAuth";
+import { CurrentUserContext } from "../App/App";
 
-function Header(props) {
-  const { loged, setLoged } = props;
+function Header() {
+  const { logedId } = useContext(CurrentUserContext);
+
   return (
     <>
-      {loged && <HederAuth />}
+      {logedId && <HederAuth />}
 
-      {!loged && (
+      {!logedId && (
         <header className="header">
           <div className="header__container">
             <Link to="/">

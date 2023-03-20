@@ -13,15 +13,14 @@ export const CurrentUserContext = createContext();
 const initUser = {name: '', email: ''}
 function App() {
   const [searchText, setSearchText] = useState('')
-
   const [user, setUser] = useState(initUser);
-
+  const [logedId, setLogedId] = useState(false);
   const searchHandler = (text) =>{
     setSearchText(text)
   }
   return (
     <BrowserRouter>
-      <CurrentUserContext.Provider value={{ user, setUser }}>
+      <CurrentUserContext.Provider value={{ user, setUser, logedId, setLogedId }}>
         <div className='App'>
           <Routes>
             <Route exact path="/" element={<Main/>} />

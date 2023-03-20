@@ -103,6 +103,7 @@
 }
 
 .profile__button_signin {
+  border: none;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
@@ -114,7 +115,7 @@
   background-color: transparent;
 }
 
-.profile__button_signin {
+.profile__button_signin:hover {
   opacity: 0.7;
 }
 

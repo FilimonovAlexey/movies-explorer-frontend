@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 import logo from "../../images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { signin } from "../../utils/Api/MainApi"
+import { signin } from "../../utils/Api/MainApi";
+import { CurrentUserContext } from "../App/App";
 
 function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { setLogedId } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   
   const hendleLogin = () => {
     signin({email, password})
     .then(data => {
       localStorage.setItem('token', data.token)
+      setLogedId(true)
       navigate("/movies")
     }).catch(error=>{
         console.log('signin error ', error)
