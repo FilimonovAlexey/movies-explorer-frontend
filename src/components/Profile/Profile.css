@@ -98,6 +98,10 @@
   opacity: 0.7;
 }
 
+.profile__button_edit:disabled {
+  opacity: 0.2;
+}
+
 .profile__button_signin {
   font-style: normal;
   font-weight: 500;
