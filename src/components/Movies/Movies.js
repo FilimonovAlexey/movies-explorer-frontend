@@ -14,8 +14,23 @@ function Movies(props) {
   const [preloader, setPreloader] = useState(false)
   const [counterCard, setCounterCard] = useState(0)
   const [switchCheked, setSwitchCheked] = useState(false)
+  const [isOther, setisOther] = useState(false)
+  const [durationLength, setDurationLength] = useState(0);
   const { currentScreen } = useResize();
 
+  useEffect(() => {
+    if(switchCheked && durationLength > counterCard){
+      console.log('switchCheked ', switchCheked, durationLength,  counterCard)
+      setisOther(true)
+    } else if(!switchCheked && (films.length > 0 && films.length > counterCard)){
+      console.log('switchCheked else if ', switchCheked, films.length,  counterCard)
+      setisOther(true)
+    } else {
+      console.log('switchCheked else', switchCheked, films.length,  counterCard)
+      setisOther(false)
+    }
+  }, [films, counterCard, switchCheked, durationLength])
+  
   useEffect(()=>{
     switch(currentScreen) {
       case 'SCREEN_XXL':
@@ -75,8 +90,8 @@ function Movies(props) {
         <main className="main__box">
           <SearchForm {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
           {preloader && <Preloader />}
-          {!preloader && <MoviesCardList cards={films} switchCheked={switchCheked} counterCard={counterCard}/>}
-          <button className="movies__button" onClick={addMoviesCard}>Еще</button>
+          {!preloader && <MoviesCardList cards={films} switchCheked={switchCheked} counterCard={counterCard} setDurationLength={setDurationLength}/>}
+          {isOther && <button className="movies__button" onClick={addMoviesCard}>Еще</button>}
         </main>
       <Footer/>
     </>
