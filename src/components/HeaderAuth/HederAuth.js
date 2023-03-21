@@ -1,13 +1,15 @@
 import React from "react";
 import "./HeaderAuth.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import account from "../../images/account.svg"
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 function HederAuth() {
+  const location = useLocation();
+  
   return(
-    <header className="header__auth">
+    <header className={`header__auth ${location.pathname === "/" ? 'header__auth-grey':''}`}>
       <div className="header__auth-container"> 
         <Link to="/" className="header__auth-logo">
           <img src={logo} alt="логотип" />

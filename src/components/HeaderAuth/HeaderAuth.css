@@ -1,5 +1,6 @@
 .header__auth {
   width: 100%;
+  background-color: #FFFFFF;
 }
 
 .header__auth-container {
@@ -7,10 +8,21 @@
   justify-content: space-between;
   align-items: center;
   margin: auto;
-  background-color: #FFFFFF;
+  /* background-color: #FFFFFF; */
   min-height: 74px;
   padding: 0 70px;
   /* width: 1140px; */
+}
+
+.header__auth-grey {
+  background-color: #5C5C5C;
+}
+.header__auth-grey a {
+  color: white;
+}
+.header__auth-grey .header__account-button {
+  background-color: #FFF;
+  color: black
 }
 
 .header__button-box_films {
