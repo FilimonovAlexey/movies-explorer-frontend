@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import "./Register.css";
 import logo from "../../images/logo.svg";
 import { Link, useNavigate  } from "react-router-dom";
@@ -9,16 +9,29 @@ function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate();
+  const [isRegister, setIsRegister] = useState(false)
 
   const hendleRegister = async () => {
     signup({name, email, password})
     .then(data => {
-      navigate("/signin")
       console.log('hendleRegister', data)
+      if(data.statusCode === 400){
+        console.error('hendleRegister error ', data)
+      } else {
+        navigate("/signin")
+      }
   }).catch(error=>{
       console.log('hendleRegister error ', error)
   });
   }
+
+  useEffect(() => {
+    if((name !== "" && email !== "" && password !== "" )){
+      setIsRegister(true)
+    } else {
+      setIsRegister(false)
+    }
+  }, [name, email, password])
 
   return(
     <section className="register">
@@ -76,7 +89,7 @@ function Register() {
               <div className="register__line"></div>
           </div>
           <div className="register__button-box">
-              <button className="register__button" type="submit" onClick={hendleRegister}>Зарегистрироваться</button>
+              <button className="register__button" type="submit" onClick={hendleRegister} disabled={!isRegister}>Зарегистрироваться</button>
               <Link className="register__link" to="/signin">
                   Ещё не зарегистрированы?
                   <span className="register__login">Войти</span>

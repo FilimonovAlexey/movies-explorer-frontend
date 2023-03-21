@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
 import logo from "../../images/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,19 +9,33 @@ function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isLogin, setIsLogin] = useState(false)
   const { setLogedId } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   
   const hendleLogin = () => {
     signin({email, password})
     .then(data => {
-      localStorage.setItem('token', data.token)
-      setLogedId(true)
-      navigate("/movies")
+      console.log('hendleLogin ',data)
+      if(data.message) {
+        console.error(data.message)
+      } else {
+        localStorage.setItem('token', data.token)
+        setLogedId(true)
+        navigate("/movies")
+      }
     }).catch(error=>{
         console.log('signin error ', error)
     });
   }
+
+  useEffect(() => {
+    if((email !== "" && password !== "" )){
+      setIsLogin(true)
+    } else {
+      setIsLogin(false)
+    }
+  }, [email, password])
   
   return(
     <section className="login">
@@ -64,7 +78,7 @@ function Login() {
               <div className="login__line"></div>
           </div>
           <div className="login__button-box">
-              <button className="login__button" type="submit" onClick={hendleLogin}>Войти</button>
+              <button className="login__button" type="submit" onClick={hendleLogin} disabled={!isLogin}>Войти</button>
               <Link className="login__link" to="/signup">
                   Ещё не зарегистрированы?
                   <span className="login__register">Регистрация</span>
