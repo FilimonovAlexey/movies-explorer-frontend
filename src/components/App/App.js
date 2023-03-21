@@ -1,5 +1,5 @@
 import '../App/App.css';
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "../Main/Main"
 import Page404 from '../Page404/Page404';
@@ -19,6 +19,13 @@ function App() {
   const searchHandler = (text) =>{
     setSearchText(text)
   }
+
+  useEffect(() => {
+    if(localStorage.getItem("token") && localStorage.getItem("token") !== ''){
+      setLogedId(true)
+    }
+  }, [])
+
   return (
     <BrowserRouter>
       <CurrentUserContext.Provider value={{ user, setUser, logedId, setLogedId }}>
