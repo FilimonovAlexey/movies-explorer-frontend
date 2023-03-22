@@ -54,7 +54,7 @@ function App() {
             <Route exact path="/saved-movies" 
                          element={
                           <ProtectedRoute logedId={logedId}>
-                            <SavedMovies/>
+                            <SavedMovies searchText={searchText} searchHandler={searchHandler}/>
                           </ProtectedRoute>
                          }
             />

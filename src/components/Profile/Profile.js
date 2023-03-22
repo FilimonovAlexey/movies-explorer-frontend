@@ -35,7 +35,6 @@ function Profile() {
     .then(data => {
       setUser(data);
       setProfile(data);
-      console.log('изменения')
     }).catch(error=>{
         console.error('handleProfileUpdate error ', error)
     });

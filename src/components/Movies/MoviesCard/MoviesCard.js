@@ -4,14 +4,29 @@ import { useLocation } from 'react-router-dom';
 import deleteFilmButton from "../../../images/deleteFilmButton.svg";
 import saveFilmButton from "../../../images/saveFilmButton.svg";
 import saveButton from "../../../images/save__button.svg";
+import { saveMovies } from "../../../utils/Api/MainApi";
+import { deleteSaveMovies } from "../../../utils/Api/MainApi";
 
-function MoviesCard({card}) {
+function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   const location = useLocation();
   const [isSaved, setIsSaved] = useState(false);
 
+  console.log('MoviesCard ', card);
+
   function handleClick() {
-      setIsSaved(!isSaved);
+    if(isSaved){
+      deleteSaveMovies(card._id)
+    } else {
+      saveMovies(card);
+    }
+    setIsSaved(!isSaved);
   }
+  const handleDelete = () => {
+    deliteFilm(card._id);
+    deleteSaveMovies(card._id)
+  }
+
+  let src = saveMoviesCards ? card.image : `https://api.nomoreparties.co/${card.image.url}`;
 
   return(
     <div className="moviesCard">
@@ -20,12 +35,12 @@ function MoviesCard({card}) {
         className="card__link"
         rel="noreferrer"
       >
-        <img className="moviesCard__image" src={`${'https://api.nomoreparties.co'}${card.image.url}`} alt={`Постер ${card.nameRU}`} />
+        <img className="moviesCard__image" src={src} alt={`Постер ${card.nameRU}`} />
       </a>
       <div className="moviesCard__container">
           <h2 className="moviesCard__title">{card.nameRU}</h2>
           {location.pathname === "/saved-movies" &&
-              <button type="button" aria-label="удалить фильм" className="moviesCard__button-del" onClick={handleClick}>
+              <button type="button" aria-label="удалить фильм" className="moviesCard__button-del" onClick={handleDelete}>
                   <img className="moviesCard__delete" alt="удалить" src={deleteFilmButton} />
               </button>}
           {location.pathname === "/movies" &&

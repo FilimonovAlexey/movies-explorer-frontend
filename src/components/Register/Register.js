@@ -14,7 +14,7 @@ function Register() {
   const hendleRegister = async () => {
     signup({name, email, password})
     .then(data => {
-      console.log('hendleRegister', data)
+      // console.log('hendleRegister', data)
       if(data.statusCode === 400){
         console.error('hendleRegister error ', data)
       } else {

@@ -44,3 +44,50 @@ export const updateProfile = (user) => {
     body: JSON.stringify(user)
   }).then(response => response.json())
 }
+
+export const saveMovies = (data) => {
+  const token = localStorage.getItem("token");
+  console.log(data);
+  return fetch(`${options.baseUrl}/movies`, {
+    method: 'POST',
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      country: data.country,
+      director: data.director,
+      duration: data.duration,
+      year: data.year,
+      description: data.description,
+      image: `https://api.nomoreparties.co/${data.image.url}`,
+      trailerLink: data.trailerLink,
+      thumbnail: `https://api.nomoreparties.co/${data.image.url}`,
+      movieId: data.id,
+      nameRU: data.nameRU,
+      nameEN: data.nameEN,
+    })
+  }).then(response => response.json())
+}
+
+export const getSaveMovies = () => {
+  const token = localStorage.getItem("token");
+  return fetch(`${options.baseUrl}/movies`, {
+    method: 'GET',
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(response => response.json())
+}
+
+export const deleteSaveMovies = (id) => {
+  const token = localStorage.getItem("token");
+  return fetch(`${options.baseUrl}/movies/${id}`, {
+    method: 'DELETE',
+    headers: {
+      "Content-type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(response => response.json())
+}

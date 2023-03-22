@@ -20,13 +20,10 @@ function Movies(props) {
 
   useEffect(() => {
     if(switchCheked && durationLength > counterCard){
-      console.log('switchCheked ', switchCheked, durationLength,  counterCard)
       setisOther(true)
     } else if(!switchCheked && (films.length > 0 && films.length > counterCard)){
-      console.log('switchCheked else if ', switchCheked, films.length,  counterCard)
       setisOther(true)
     } else {
-      console.log('switchCheked else', switchCheked, films.length,  counterCard)
       setisOther(false)
     }
   }, [films, counterCard, switchCheked, durationLength])
@@ -86,7 +83,7 @@ function Movies(props) {
 
   return(
     <>
-      <Header loged={true}/>
+      <Header/>
         <main className="main__box">
           <SearchForm {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
           {preloader && <Preloader />}
