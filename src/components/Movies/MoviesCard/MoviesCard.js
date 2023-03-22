@@ -11,8 +11,6 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   const location = useLocation();
   const [isSaved, setIsSaved] = useState(false);
 
-  console.log('MoviesCard ', card);
-
   function handleClick() {
     if(isSaved){
       deleteSaveMovies(card._id)

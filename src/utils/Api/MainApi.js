@@ -47,7 +47,6 @@ export const updateProfile = (user) => {
 
 export const saveMovies = (data) => {
   const token = localStorage.getItem("token");
-  console.log(data);
   return fetch(`${options.baseUrl}/movies`, {
     method: 'POST',
     headers: {

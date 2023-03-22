@@ -16,7 +16,6 @@ function Login() {
   const hendleLogin = () => {
     signin({email, password})
     .then(data => {
-      // console.log('hendleLogin ',data)
       if(data.message) {
         console.error(data.message)
       } else {
