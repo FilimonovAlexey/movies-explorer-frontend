@@ -30,7 +30,7 @@ npm start
 
 ## Ссылки проекта
 
-Проект выложен на сервер, доступ по [ссылке]().
-Макет проекта можно посмотреть [здесь](https://disk.yandex.ru/d/b6ReMFTXF3LHuA).
-Пул реквест расположен по [ссылке]().
-API [nomoreparties.co](https://api.nomoreparties.co/)
+1. Проект выложен на сервер, доступ по [ссылке]().
+2. Макет проекта можно посмотреть [здесь](https://disk.yandex.ru/d/b6ReMFTXF3LHuA).
+3. Пул реквест расположен по [ссылке]().
+4. API [nomoreparties.co](https://api.nomoreparties.co/)
