@@ -47,7 +47,7 @@ function Register() {
         <form noValidate className="register__form" name="register-form" onSubmit={e=> e.preventDefault()}>
           <div className="register__field">
           <label>
-                  <span className="register__name">Имя</span>
+                  <label className="register__name">Имя</label>
                   <input className="register__input" 
                          type="text" 
                          name="name" 
@@ -55,17 +55,19 @@ function Register() {
                          minLength={2}
                          maxLength={30}
                          required={true}
+                         pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
                          value={name}
                          onChange={e => setName(e.target.value)}
                    />
               </label>
               <div className="register__line"></div>
               <label>
-                  <span className="register__email">E-mail</span>
+                  <label className="register__email">E-mail</label>
                   <input className="register__input" 
                          type="email" 
                          name="email" 
                          placeholder="Введите Ваш E-mail" 
+                         pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$"
                          required={true}
                          minLength={2}
                          maxLength={30}
@@ -75,7 +77,7 @@ function Register() {
               </label>
               <div className="register__line"></div>
               <label>
-                  <span className="register__password">Пароль</span>
+                  <label className="register__password">Пароль</label>
                   <input className="register__input" 
                          type="password" 
                          name="password" 

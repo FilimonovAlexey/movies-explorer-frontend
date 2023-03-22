@@ -56,6 +56,7 @@ function Login() {
                          placeholder="Введите Ваш E-mail" 
                          minLength={2}
                          maxLength={30}
+                         pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$"
                          required={true}
                          value={email}
                          onChange={e => setEmail(e.target.value)}
