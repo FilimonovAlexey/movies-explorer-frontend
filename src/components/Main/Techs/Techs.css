@@ -1,11 +1,11 @@
 .teshs {
   background-color: #F5F5F5;
-  padding: 100px 70px 100px 70px;
   margin: 0;
 }
 
 .techs__box {
   display: flex;
+  padding: 110px 70px 110px 70px;
   margin: auto;
   max-width: 1140px;
   flex-direction: column;
@@ -76,12 +76,9 @@
 }
 
 @media screen and (max-width: 825px) {
-  .teshs {
-    padding: 90px 0;
-  }
-
   .techs__box {
     max-width: 668px;
+    padding: 90px 50px 90px 50px;
   }
 
   .techs__subtitle {
@@ -108,12 +105,9 @@
 }
 
 @media screen and (max-width: 725px) {
-  .teshs {
-    padding: 70px 0;
-  }
-
   .techs__box {
     max-width: 284px;
+    padding: 70px 0;
   }
 
   .techs__title {

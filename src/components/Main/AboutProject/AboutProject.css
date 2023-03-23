@@ -1,10 +1,6 @@
 .about-project {
   padding: 110px 70px 110px 70px;
-  margin: 0;
-}
-
-.about__title-block {
-  border-bottom: 1px solid #000000;
+  margin: auto;
 }
 
 .about__title {
@@ -14,6 +10,7 @@
   line-height: 27px;
   padding: 23px 0;
   margin: 0;
+  border-bottom: 1px solid #000000;
 }
 
 .project {
@@ -103,6 +100,7 @@
 @media screen and (max-width: 825px) {
   .about-project {
     padding: 90px 50px 90px 50px;
+    max-width: 668px;
   }
 
   .project {
@@ -129,9 +127,10 @@
   }
 }
 
-@media screen and (max-width: 425px){
+@media screen and (max-width: 725px){
   .about-project {
     padding: 70px 18px 70px 18px;
+    max-width: 284px;
   }
 
   .about__title {
