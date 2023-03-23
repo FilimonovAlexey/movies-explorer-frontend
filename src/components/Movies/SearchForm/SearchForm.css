@@ -96,9 +96,10 @@
 
 .error {
   color: #EE3465;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
   display: flex;
   align-items: center;
   justify-content: center
