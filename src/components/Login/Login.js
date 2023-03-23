@@ -101,7 +101,7 @@ function Login() {
                          onChange={e => emailHandler(e)}
                          onBlur={e => blurHandler(e)}
                   />
-                  {(emailDirty && errorMessageEmail) && <div className="error">{errorMessageEmail}</div>}
+                  {(emailDirty && errorMessageEmail) && <div className="error__login">{errorMessageEmail}</div>}
               </label>
               <label>
                   <span className="login__password">Пароль</span>
@@ -116,7 +116,7 @@ function Login() {
                          onChange={e => passwordHandler(e)}
                          onBlur={e => blurHandler(e)}
                    />
-                   {(passwordDirty && errorMessagePassword) && <div className="error">{errorMessagePassword}</div>}
+                   {(passwordDirty && errorMessagePassword) && <div className="error__login">{errorMessagePassword}</div>}
               </label>
           </div>
           <div className="login__button-box">

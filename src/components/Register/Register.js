@@ -116,7 +116,7 @@ function Register() {
                          onChange={e => nameHandler(e)}
                          onBlur={e => blurHandler(e)}
                    />
-                   {(nameDirty && errorMessageName) && <div className="error">{errorMessageName}</div>}
+                   {(nameDirty && errorMessageName) && <div className="error__register">{errorMessageName}</div>}
               </label>
               <label>
                   <label className="register__email">E-mail</label>
@@ -132,7 +132,7 @@ function Register() {
                          onChange={e => emailHandler(e)}
                          onBlur={e => blurHandler(e)}
                   />
-                  {(emailDirty && errorMessageEmail) && <div className="error">{errorMessageEmail}</div>}
+                  {(emailDirty && errorMessageEmail) && <div className="error__register">{errorMessageEmail}</div>}
               </label>
               <label>
                   <label className="register__password">Пароль</label>
@@ -147,7 +147,7 @@ function Register() {
                          onChange={e => passwordHandler(e)}
                          onBlur={e => blurHandler(e)}
                    />
-                   {(passwordDirty && errorMessagePassword) && <div className="error">{errorMessagePassword}</div>}
+                   {(passwordDirty && errorMessagePassword) && <div className="error__register">{errorMessagePassword}</div>}
               </label>
           </div>
           <div className="register__button-box">
