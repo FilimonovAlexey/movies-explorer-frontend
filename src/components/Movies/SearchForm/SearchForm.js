@@ -1,26 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SearchForm.css"
 
 function SearchForm(props) {
-
+  const [filmDirty, setFilmDirty] = useState(false)
+  const [errorMessageFilm, setErrorMessageFilm] = useState('Введите название фильма')
   const {searchText, searchHandler, findeMovies, setSwitchCheked, switchCheked} = props;
+
+  const blurHandler = (e) => {
+    switch (e.target.name) {
+      case "text": 
+        setFilmDirty(true)
+        break
+
+        // no default
+    }
+  }
 
   return (
       <form className="searchform" onSubmit={(e)=>{e.preventDefault()}}>
-
         <div className="searchform__block">
           <div className="searchform__input-logo"></div>
           <input
             type="text"
+            name="text"
             className="searchform__input"
             placeholder="Фильм"
             required
             onChange={(event) => {searchHandler(event.target.value)}}
             value={searchText}
+            onBlur={e => blurHandler(e)}
           />
           <button className="searchform__button" onClick={()=>findeMovies(searchText)}></button>
         </div>
-
+        {(filmDirty && errorMessageFilm) && <div className="error">{errorMessageFilm}</div>}
         <label className="searchform__switch">
           <input className="searchform__checkbox-input" type="checkbox" onChange={(event)=>setSwitchCheked(event.target.checked)} />
           <div className="searchform__checkbox-custom"></div>

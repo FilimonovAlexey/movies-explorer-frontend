@@ -94,6 +94,16 @@
   left: 60%;
 }
 
+.error {
+  color: #EE3465;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
 @media screen and (max-width: 769px) {
   .searchform__block {
     padding: 86px 30px 15px 30px;
