@@ -8,10 +8,8 @@
   justify-content: space-between;
   align-items: center;
   margin: auto;
-  /* background-color: #FFFFFF; */
   min-height: 74px;
   padding: 0 70px;
-  /* width: 1140px; */
 }
 
 .header__auth-grey {
@@ -84,7 +82,10 @@
 
   .header__auth-container {
     padding: 0 30px;
-    /* width: 708px; */
+  }
+
+  .header__auth-grey a {
+    color: #000000;
   }
 }
 
@@ -95,6 +96,9 @@
 
   .header__auth-container {
     padding: 0 14px;
-    /* width: 292px; */
+  }
+
+  .header__auth-grey a {
+    color: #000000;
   }
 }
