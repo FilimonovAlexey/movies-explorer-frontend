@@ -58,6 +58,7 @@ function SavedMovies(props) {
     const fetchData = async () => {
       const data = await getSaveMovies();
       setCards(data);
+      setFilms(data);
       setPreloader(false)
     }
     fetchData();
@@ -65,12 +66,10 @@ function SavedMovies(props) {
 
   const findeMovies = (text) => {
     setPreloader(true)
-    if(text.length < 2) {
-      setFilms(cards)
-    } else {
+    if(text.length > 0) {
       const a = text.toLowerCase().trim()
       setFilms(cards.filter((obg) => obg.nameRU.toLowerCase().indexOf(a) !== -1 || obg.nameEN.toLowerCase().indexOf(a) !== -1))
-    };
+    }
     setPreloader(false)
   }
 
