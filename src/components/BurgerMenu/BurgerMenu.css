@@ -128,3 +128,9 @@
     border-bottom: 2px solid #000000;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .hamburger-menu__active {
+    width: 100%;
+  }  
+}
