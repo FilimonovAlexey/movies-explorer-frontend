@@ -24,13 +24,13 @@
 .searchform__input-logo {
   width: 34px;
   height: 34px;
-  background-image: url("../../../images/searchform__input-logo.png");
+  background-image: url("../../../images/searchform__input-logo.svg");
 }
 
 .searchform__button {
   border-radius: 48px;
   background-color: #2BE080;
-  background-image: url("../../../images/searchform__button-logo.png");
+  background-image: url("../../../images/searchform__button-logo.svg");
   width: 80px;
   height: 34px;
   background-repeat: no-repeat;
