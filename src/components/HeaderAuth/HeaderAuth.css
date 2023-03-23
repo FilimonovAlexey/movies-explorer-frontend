@@ -3,6 +3,10 @@
   background-color: #FFFFFF;
 }
 
+.header__auth-logo {
+  z-index: 2;
+}
+
 .header__auth-container {
   display: flex;
   justify-content: space-between;
