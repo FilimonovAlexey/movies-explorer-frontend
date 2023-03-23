@@ -95,8 +95,11 @@
   border-bottom: 1px solid #2BE080;
 }
 
-.register__line {
-  border-bottom: 1px solid #E8E8E8;
+.error {
+  color: #EE3465;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 .register__button {

@@ -9,7 +9,11 @@ function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [isLogin, setIsLogin] = useState(false)
+  const [emailDirty, setEmailDirty] = useState(false)
+  const [passwordDirty, setPasswordDirty] = useState(false)
+  const [errorMessageEmail, setErrorMessageEmail] = useState('Введите email')
+  const [errorMessagePassword, setErrorMessagePassword] = useState('Введите пароль')
+  const [inputValid, setInputValid] = useState(false)
   const { setLogedId } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   
@@ -29,12 +33,48 @@ function Login() {
   }
 
   useEffect(() => {
-    if((email !== "" && password !== "" )){
-      setIsLogin(true)
+    if (errorMessageEmail || errorMessagePassword) {
+      setInputValid(false)
     } else {
-      setIsLogin(false)
+      setInputValid(true)
     }
-  }, [email, password])
+  }, [errorMessageEmail, errorMessagePassword])
+
+  const blurHandler = (e) => {
+    switch (e.target.name) {
+      case "email": 
+        setEmailDirty(true)
+        break
+
+      case "password": 
+        setPasswordDirty(true)
+        break
+
+        // no default
+    }
+  }
+
+  const emailHandler = (e) => {
+    setEmail(e.target.value)
+    const pattern = /^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/
+    if (!pattern.test(String(e.target.value).toLocaleLowerCase())) {
+      setErrorMessageEmail("Неккоректный email")
+    } else {
+      setErrorMessageEmail("")
+    }
+  }
+
+  const passwordHandler = (e) => {
+    setPassword(e.target.value)
+      if (e.target.value.length < 4 || e.target.value.length > 8) {
+        setErrorMessagePassword("Пароль должен содержать от 4 до 8 символов")
+        if (!e.target.value) {
+          setErrorMessagePassword("Пароль не может быть пустым")
+        }
+      } else {
+        setErrorMessagePassword("")
+      }
+    }
   
   return(
     <section className="login">
@@ -55,30 +95,32 @@ function Login() {
                          placeholder="Введите Ваш E-mail" 
                          minLength={2}
                          maxLength={30}
-                         pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$"
+                         pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,30}$"
                          required={true}
                          value={email}
-                         onChange={e => setEmail(e.target.value)}
+                         onChange={e => emailHandler(e)}
+                         onBlur={e => blurHandler(e)}
                   />
+                  {(emailDirty && errorMessageEmail) && <div className="error">{errorMessageEmail}</div>}
               </label>
-              <div className="login__line"></div>
               <label>
                   <span className="login__password">Пароль</span>
                   <input className="login__input" 
                          type="password" 
                          name="password" 
                          placeholder="Введите Ваш Пароль" 
-                         minLength={2}
-                         maxLength={30}
+                         minLength={4}
+                         maxLength={8}
                          required={true}
                          value={password}
-                         onChange={e => setPassword(e.target.value)}
+                         onChange={e => passwordHandler(e)}
+                         onBlur={e => blurHandler(e)}
                    />
+                   {(passwordDirty && errorMessagePassword) && <div className="error">{errorMessagePassword}</div>}
               </label>
-              <div className="login__line"></div>
           </div>
           <div className="login__button-box">
-              <button className="login__button" type="submit" onClick={hendleLogin} disabled={!isLogin}>Войти</button>
+              <button className="login__button" type="submit" onClick={hendleLogin} disabled={!inputValid}>Войти</button>
               <Link className="login__link" to="/signup">
                   Ещё не зарегистрированы?
                   <span className="login__register">Регистрация</span>

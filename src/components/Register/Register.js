@@ -9,7 +9,13 @@ function Register() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate();
-  const [isRegister, setIsRegister] = useState(false)
+  const [nameDirty, setNameDirty] = useState(false)
+  const [emailDirty, setEmailDirty] = useState(false)
+  const [passwordDirty, setPasswordDirty] = useState(false)
+  const [errorMessageName, setErrorMessageName] = useState('Введите имя')
+  const [errorMessageEmail, setErrorMessageEmail] = useState('Введите email')
+  const [errorMessagePassword, setErrorMessagePassword] = useState('Введите пароль')
+  const [inputValid, setInputValid] = useState(false)
 
   const hendleRegister = async () => {
     signup({name, email, password})
@@ -25,12 +31,63 @@ function Register() {
   }
 
   useEffect(() => {
-    if((name !== "" && email !== "" && password !== "" )){
-      setIsRegister(true)
+    if (errorMessageName || errorMessageEmail || errorMessagePassword) {
+      setInputValid(false)
     } else {
-      setIsRegister(false)
+      setInputValid(true)
     }
-  }, [name, email, password])
+  }, [errorMessageName, errorMessageEmail, errorMessagePassword])
+
+ 
+  const blurHandler = (e) => {
+    switch (e.target.name) {
+      case "name": 
+        setNameDirty(true)
+        break
+
+      case "email": 
+        setEmailDirty(true)
+        break
+
+      case "password": 
+        setPasswordDirty(true)
+        break
+
+        // no default
+    }
+  }
+
+  const nameHandler = (e) => {
+    setName(e.target.value)
+    const pattern = /^[A-Za-zА-Яа-яЁё /s -]{4,}/
+    if (!pattern.test(String(e.target.value).toLocaleLowerCase())) {
+      setErrorMessageName("Неккоректное имя")
+    } else {
+      setErrorMessageName("")
+    }
+  }
+  
+  const emailHandler = (e) => {
+    setEmail(e.target.value)
+    const pattern = /^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/
+    if (!pattern.test(String(e.target.value).toLocaleLowerCase())) {
+      setErrorMessageEmail("Неккоректный email")
+    } else {
+      setErrorMessageEmail("")
+    }
+  }
+
+  const passwordHandler = (e) => {
+    setPassword(e.target.value)
+      if (e.target.value.length < 4 || e.target.value.length > 8) {
+        setErrorMessagePassword("Пароль должен содержать от 4 до 8 символов")
+        if (!e.target.value) {
+          setErrorMessagePassword("Пароль не может быть пустым")
+        }
+      } else {
+        setErrorMessagePassword("")
+      }
+    }
 
   return(
     <section className="register">
@@ -51,46 +108,50 @@ function Register() {
                          type="text" 
                          name="name" 
                          placeholder="Введите Ваше Имя" 
-                         minLength={2}
+                         minLength={4}
                          maxLength={30}
+                         pattern="^[A-Za-zА-Яа-яЁё /s -]{4,30}"
                          required={true}
-                         pattern="^[A-Za-zА-Яа-яЁё /s -]+$"
                          value={name}
-                         onChange={e => setName(e.target.value)}
+                         onChange={e => nameHandler(e)}
+                         onBlur={e => blurHandler(e)}
                    />
+                   {(nameDirty && errorMessageName) && <div className="error">{errorMessageName}</div>}
               </label>
-              <div className="register__line"></div>
               <label>
                   <label className="register__email">E-mail</label>
                   <input className="register__input" 
                          type="email" 
                          name="email" 
                          placeholder="Введите Ваш E-mail" 
-                         pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$"
+                         pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,30}$"
                          required={true}
                          minLength={2}
                          maxLength={30}
                          value={email}
-                         onChange={e => setEmail(e.target.value)}
+                         onChange={e => emailHandler(e)}
+                         onBlur={e => blurHandler(e)}
                   />
+                  {(emailDirty && errorMessageEmail) && <div className="error">{errorMessageEmail}</div>}
               </label>
-              <div className="register__line"></div>
               <label>
                   <label className="register__password">Пароль</label>
                   <input className="register__input" 
                          type="password" 
                          name="password" 
-                         placeholder="Введите Ваш Пароль" 
+                         placeholder="Введите Ваш Пароль"
                          minLength={4}
+                         maxLength={8}
                          required={true}
                          value={password}
-                         onChange={e => setPassword(e.target.value)}
+                         onChange={e => passwordHandler(e)}
+                         onBlur={e => blurHandler(e)}
                    />
+                   {(passwordDirty && errorMessagePassword) && <div className="error">{errorMessagePassword}</div>}
               </label>
-              <div className="register__line"></div>
           </div>
           <div className="register__button-box">
-              <button className="register__button" type="submit" onClick={hendleRegister} disabled={!isRegister}>Зарегистрироваться</button>
+              <button className="register__button" type="submit" onClick={hendleRegister} disabled={!inputValid}>Зарегистрироваться</button>
               <Link className="register__link" to="/signin">
                   Ещё не зарегистрированы?
                   <span className="register__login">Войти</span>
