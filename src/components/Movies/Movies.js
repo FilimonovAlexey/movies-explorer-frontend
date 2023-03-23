@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Movies.css";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -6,7 +6,9 @@ import Preloader from "./Preloader/Preloader";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import { getMovies } from "../../utils/Api/ApiFilm";
+import { getSaveMovies } from "../../utils/Api/MainApi";
 import { useResize } from "../../utils/hooks/UseResize";
+import { CurrentUserContext } from "../App/App"
 
 function Movies(props) {
   const [cards, setCards] = useState([])
@@ -17,6 +19,7 @@ function Movies(props) {
   const [isOther, setisOther] = useState(false)
   const [durationLength, setDurationLength] = useState(0);
   const { currentScreen } = useResize();
+  const { setSaveMoviesStore } = useContext(CurrentUserContext);
 
   useEffect(() => {
     if(switchCheked && durationLength > counterCard){
@@ -33,7 +36,6 @@ function Movies(props) {
       case 'SCREEN_XXL':
         setCounterCard(12)
         break;
-  
       case "SCREEN_XL":
         setCounterCard(12)
         break;
@@ -43,19 +45,24 @@ function Movies(props) {
       case "SCREEN_MD":
         setCounterCard(8)
         break;
-
       default:
         setCounterCard(5)
         break;
     }
-    
   },[currentScreen])
   
   useEffect(() => {
     setPreloader(true)
     const fetchData = async () => {
+      const saves = await getSaveMovies();
+      setSaveMoviesStore(saves)
       const data = await getMovies();
-      setCards(data);
+      const newData = data.map(item => {
+        const isFind = saves.find(obg=> obg.movieId === item.id)
+        const _id = !!isFind ? isFind._id : item.id;
+        return {...item, inSaved: !!isFind, _id: _id }
+      })
+      setCards(newData);
       setPreloader(false)
     }
     fetchData();
@@ -71,6 +78,7 @@ function Movies(props) {
     };
     setPreloader(false)
   }
+
   const addMoviesCard = () =>{
     let add = 3;
     if(currentScreen === 'SCREEN_MD'){

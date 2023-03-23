@@ -14,7 +14,7 @@ function MoviesCardList({cards, switchCheked, counterCard, setDurationLength, sa
     <section className="movieCardList">
       <div className="movieCardList__box">
         {films.length ? films.map((card) => (
-            <MoviesCard key={saveMoviesCards ? card.id : card._id} card={card} saveMoviesCards={saveMoviesCards} deliteFilm={deliteFilm} />
+            <MoviesCard key={card._id} card={card} saveMoviesCards={saveMoviesCards} deliteFilm={deliteFilm} />
         )) : <>Ничего не найдено!</>}
       </div>
     </section>

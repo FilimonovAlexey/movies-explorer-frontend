@@ -16,6 +16,7 @@ function App() {
   const [searchText, setSearchText] = useState('')
   const [user, setUser] = useState(initUser);
   const [logedId, setLogedId] = useState(false);
+  const [saveMoviesStore, setSaveMoviesStore] = useState([]);
   const searchHandler = (text) =>{
     setSearchText(text)
   }
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <CurrentUserContext.Provider value={{ user, setUser, logedId, setLogedId }}>
+      <CurrentUserContext.Provider value={{ user, setUser, logedId, setLogedId, saveMoviesStore, setSaveMoviesStore }}>
         <div className='App'>
           <Routes>
             <Route exact path="/" element={<Main/>} />

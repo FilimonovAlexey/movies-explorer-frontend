@@ -9,18 +9,21 @@ import { deleteSaveMovies } from "../../../utils/Api/MainApi";
 
 function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   const location = useLocation();
-  const [isSaved, setIsSaved] = useState(false);
+  const [isSaved, setIsSaved] = useState(card.inSaved);
 
   function handleClick() {
     if(isSaved){
       deleteSaveMovies(card._id)
     } else {
-      saveMovies(card);
+      saveMovies(card).then(data=>{
+        card._id = data._id
+      });
     }
     setIsSaved(!isSaved);
   }
+  
   const handleDelete = () => {
-    deliteFilm(card._id);
+    deliteFilm(card._id)
     deleteSaveMovies(card._id)
   }
 

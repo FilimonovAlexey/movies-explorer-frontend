@@ -9,7 +9,6 @@ import { useResize } from "../../utils/hooks/UseResize";
 import Preloader from "../Movies/Preloader/Preloader";
 
 function SavedMovies(props) {
-
   const [cards, setCards] = useState([])
   const [films, setFilms] = useState([])
   const [preloader, setPreloader] = useState(false)
@@ -39,7 +38,6 @@ function SavedMovies(props) {
       case 'SCREEN_XXL':
         setCounterCard(12)
         break;
-  
       case "SCREEN_XL":
         setCounterCard(12)
         break;
@@ -49,12 +47,10 @@ function SavedMovies(props) {
       case "SCREEN_MD":
         setCounterCard(8)
         break;
-
       default:
         setCounterCard(5)
         break;
     }
-    
   },[currentScreen])
   
   useEffect(() => {
@@ -77,6 +73,7 @@ function SavedMovies(props) {
     };
     setPreloader(false)
   }
+
   const addMoviesCard = () =>{
     let add = 3;
     if(currentScreen === 'SCREEN_MD'){
