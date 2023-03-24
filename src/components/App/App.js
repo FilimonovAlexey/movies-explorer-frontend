@@ -9,21 +9,36 @@ import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import { ProtectedRoute } from '../ProtectedRoute/ProtectedRoute';
+import { getProfile } from "../../utils/Api/MainApi"
 
 export const CurrentUserContext = createContext();
 const initUser = {name: '', email: ''}
 function App() {
+  // const navigate = useNavigate();
   const [searchText, setSearchText] = useState('')
   const [user, setUser] = useState(initUser);
-  const [logedId, setLogedId] = useState(false);
+  const [logedId, setLogedId] = useState(true);
   const [saveMoviesStore, setSaveMoviesStore] = useState([]);
   const searchHandler = (text) =>{
     setSearchText(text)
   }
 
   useEffect(() => {
-    if(localStorage.getItem("token") && localStorage.getItem("token") !== ''){
-      setLogedId(true)
+    if(!localStorage.getItem("token") || localStorage.getItem("token") === ''){
+      setLogedId(false)
+    } 
+    else {
+      getProfile()
+      .then(data=>{
+        if(data.message){
+          localStorage.removeItem("token")
+          setLogedId(false)
+          window.location.reload();
+        }
+      })
+      .catch(error => {
+        console.error('getProfile error ', error)
+      })
     }
   }, [])
 

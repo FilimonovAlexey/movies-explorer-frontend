@@ -22,7 +22,7 @@ export const signin = (user) => {
       .then(response => response.json())
   }
 
-export const getProfile = (data) => {
+export const getProfile = () => {
   const token = localStorage.getItem("token");
   return fetch(`${options.baseUrl}/users/me`, {
     method: 'GET',
@@ -77,7 +77,17 @@ export const getSaveMovies = () => {
       "Content-type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  }).then(response => response.json())
+  }).then(response => {
+    if(response.status === 401){
+      localStorage.removeItem('token');
+      return [];
+    } else {
+      return response.json()
+    }
+  })
+  .catch(error=>{
+    console.error('getSaveMovies error',error)
+  })
 }
 
 export const deleteSaveMovies = (id) => {
