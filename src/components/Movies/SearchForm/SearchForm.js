@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SearchForm.css"
 
 function SearchForm(props) {
@@ -6,18 +6,15 @@ function SearchForm(props) {
   const [errorMessageFilm, setErrorMessageFilm] = useState('Введите название фильма')
   const {searchText, searchHandler, findeMovies, setSwitchCheked, switchCheked} = props;
 
-  const blurHandler = (e) => {
-    switch (e.target.name) {
-      case "text": 
-        setFilmDirty(true)
-        break
-
-        // no default
+  useEffect(() => {
+    if(filmDirty && searchText.length){
+      setFilmDirty(false)
     }
-  }
+  }, [searchText, filmDirty])
+  
 
   return (
-      <form className="searchform" onSubmit={(e)=>{e.preventDefault()}}>
+      <form noValidate className="searchform" onSubmit={(e)=>{e.preventDefault()}}>
         <div className="searchform__block">
           <div className="searchform__input-logo"></div>
           <input
@@ -28,7 +25,7 @@ function SearchForm(props) {
             required
             onChange={(event) => {searchHandler(event.target.value)}}
             value={searchText}
-            onBlur={e => blurHandler(e)}
+            onClick={e =>setFilmDirty(true)}
           />
           <button className="searchform__button" onClick={()=>findeMovies(searchText)}></button>
         </div>
