@@ -121,7 +121,8 @@ function Register() {
                   <input className="register__input" 
                          type="text" 
                          name="name" 
-                         placeholder="Введите Ваше Имя" 
+                         placeholder="Введите Ваше Имя"
+                         autoComplete="off"
                          minLength={4}
                          maxLength={30}
                          pattern="^[A-Za-zА-Яа-яЁё /s -]{4,30}"
@@ -136,7 +137,8 @@ function Register() {
                   <input className="register__input" 
                          type="email" 
                          name="email" 
-                         placeholder="Введите Ваш E-mail" 
+                         placeholder="Введите Ваш E-mail"
+                         autoComplete="off"
                          pattern="^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,30}$"
                          required={true}
                          minLength={2}
@@ -152,6 +154,7 @@ function Register() {
                          type="password" 
                          name="password" 
                          placeholder="Введите Ваш Пароль"
+                         autoComplete="off"
                          minLength={4}
                          maxLength={8}
                          required={true}

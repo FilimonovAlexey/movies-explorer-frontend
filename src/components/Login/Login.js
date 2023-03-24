@@ -92,8 +92,9 @@ function Login() {
               <label>
                   <span className="login__email">E-mail</span>
                   <input className="login__input" 
-                         type="email" 
-                         name="email" 
+                         type="email"
+                         name="email"
+                         autoComplete="off"
                          placeholder="Введите Ваш E-mail" 
                          minLength={2}
                          maxLength={30}
@@ -107,8 +108,9 @@ function Login() {
               <label>
                   <span className="login__password">Пароль</span>
                   <input className="login__input" 
-                         type="password" 
-                         name="password" 
+                         type="password"
+                         name="password"
+                         autoComplete="off"
                          placeholder="Введите Ваш Пароль" 
                          minLength={4}
                          maxLength={8}
