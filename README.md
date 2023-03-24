@@ -32,4 +32,4 @@ npm start
 
 1. Проект выложен на сервер, доступ по [ссылке](https://filimonovalexey.nomoredomains.rocks/).
 2. Макет проекта можно посмотреть [здесь](https://disk.yandex.ru/d/b6ReMFTXF3LHuA).
-3. Пул реквест расположен по [ссылке]().
+3. Пул реквест расположен по [ссылке](https://github.com/FilimonovAlexey/movies-explorer-frontend/pull/1).
