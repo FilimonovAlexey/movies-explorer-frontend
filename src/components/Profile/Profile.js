@@ -35,6 +35,7 @@ function Profile() {
     .then(data => {
       setUser(data);
       setProfile(data);
+      console.log("Данные успешно внесены")
     }).catch(error=>{
         console.error('handleProfileUpdate error ', error)
     });
@@ -70,7 +71,7 @@ function Profile() {
                     <p className='profile__input-email'>E-mail</p>
                     <input className='profile__input'
                         type='email'
-                        name='name'
+                        name='email'
                         value={profile.email}
                         placeholder='E-mail'
                         onChange={(event)=> setProfile((prev)=>({...prev, email: event.target.value}))}
