@@ -58,6 +58,7 @@ function Register() {
   }
 
   const nameHandler = (e) => {
+    blurHandler(e)
     setName(e.target.value)
     const pattern = /^[A-Za-zА-Яа-яЁё /s -]{4,}/
     if (!pattern.test(String(e.target.value).toLocaleLowerCase())) {
@@ -68,6 +69,7 @@ function Register() {
   }
   
   const emailHandler = (e) => {
+    blurHandler(e)
     setEmail(e.target.value)
     const pattern = /^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/
     if (!pattern.test(String(e.target.value).toLocaleLowerCase())) {
@@ -78,6 +80,7 @@ function Register() {
   }
 
   const passwordHandler = (e) => {
+    blurHandler(e)
     setPassword(e.target.value)
       if (e.target.value.length < 4 || e.target.value.length > 8) {
         setErrorMessagePassword("Пароль должен содержать от 4 до 8 символов")
@@ -114,7 +117,6 @@ function Register() {
                          required={true}
                          value={name}
                          onChange={e => nameHandler(e)}
-                         onBlur={e => blurHandler(e)}
                    />
                    {(nameDirty && errorMessageName) && <div className="error__register">{errorMessageName}</div>}
               </label>
@@ -130,7 +132,6 @@ function Register() {
                          maxLength={30}
                          value={email}
                          onChange={e => emailHandler(e)}
-                         onBlur={e => blurHandler(e)}
                   />
                   {(emailDirty && errorMessageEmail) && <div className="error__register">{errorMessageEmail}</div>}
               </label>
@@ -145,7 +146,6 @@ function Register() {
                          required={true}
                          value={password}
                          onChange={e => passwordHandler(e)}
-                         onBlur={e => blurHandler(e)}
                    />
                    {(passwordDirty && errorMessagePassword) && <div className="error__register">{errorMessagePassword}</div>}
               </label>

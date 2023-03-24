@@ -55,6 +55,7 @@ function Login() {
   }
 
   const emailHandler = (e) => {
+    blurHandler(e)
     setEmail(e.target.value)
     const pattern = /^[\w]+@[a-zA-Z]+\.[a-zA-Z]{2,4}$/
     if (!pattern.test(String(e.target.value).toLocaleLowerCase())) {
@@ -65,6 +66,7 @@ function Login() {
   }
 
   const passwordHandler = (e) => {
+    blurHandler(e)
     setPassword(e.target.value)
       if (e.target.value.length < 4 || e.target.value.length > 8) {
         setErrorMessagePassword("Пароль должен содержать от 4 до 8 символов")
@@ -99,7 +101,6 @@ function Login() {
                          required={true}
                          value={email}
                          onChange={e => emailHandler(e)}
-                         onBlur={e => blurHandler(e)}
                   />
                   {(emailDirty && errorMessageEmail) && <div className="error__login">{errorMessageEmail}</div>}
               </label>
@@ -114,7 +115,6 @@ function Login() {
                          required={true}
                          value={password}
                          onChange={e => passwordHandler(e)}
-                         onBlur={e => blurHandler(e)}
                    />
                    {(passwordDirty && errorMessagePassword) && <div className="error__login">{errorMessagePassword}</div>}
               </label>
