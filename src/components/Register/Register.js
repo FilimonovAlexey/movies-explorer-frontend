@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Register.css";
 import logo from "../../images/logo.svg";
 import { Link, useNavigate  } from "react-router-dom";
-import { signup } from "../../utils/Api/MainApi";
+import { signup, signin } from "../../utils/Api/MainApi";
+import { CurrentUserContext } from "../App/App";
 
 function Register() {
   const [name, setName] = useState('')
@@ -16,6 +17,7 @@ function Register() {
   const [errorMessageEmail, setErrorMessageEmail] = useState('Введите email')
   const [errorMessagePassword, setErrorMessagePassword] = useState('Введите пароль')
   const [inputValid, setInputValid] = useState(false)
+  const { setLogedId } = useContext(CurrentUserContext);
 
   const hendleRegister = async () => {
     signup({name, email, password})
@@ -23,7 +25,16 @@ function Register() {
       if(data.statusCode === 400){
         console.error('hendleRegister error ', data)
       } else {
-        navigate("/signin")
+        signin({email, password})
+        .then(data => {
+          if(data.message) {
+            console.error(data.message)
+          } else {
+            localStorage.setItem('token', data.token)
+            setLogedId(true)
+            navigate("/movies")
+          }
+        });
       }
   }).catch(error=>{
       console.log('hendleRegister error ', error)
