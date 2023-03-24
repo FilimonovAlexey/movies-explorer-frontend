@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./MoviesCard.css";
 import { useLocation } from 'react-router-dom';
 import deleteFilmButton from "../../../images/deleteFilmButton.svg";
@@ -6,23 +6,47 @@ import saveFilmButton from "../../../images/saveFilmButton.svg";
 import saveButton from "../../../images/save__button.svg";
 import { saveMovies } from "../../../utils/Api/MainApi";
 import { deleteSaveMovies } from "../../../utils/Api/MainApi";
+import { CurrentUserContext } from "../../App/App"
 
 function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   const location = useLocation();
   const [isSaved, setIsSaved] = useState(card.inSaved);
-
+  const { setFindeSaveMoviesStore, setSaveMoviesStore, setFilms, setCards } = useContext(CurrentUserContext);
+  
   function handleClick() {
     if(isSaved){
+      card.inSaved = false;
+      setFindeSaveMoviesStore(prev=> prev.filter(item=> item._id !== card._id))
+      setSaveMoviesStore(prev=> prev.filter(item=> item._id !== card._id))
       deleteSaveMovies(card._id)
     } else {
+      card.inSaved = true;
       saveMovies(card).then(data=>{
-        card._id = data._id
+        card._id = data._id;
+        const saveCard = {...card, image: `https://api.nomoreparties.co/${card.image.url}`, _id: data._id }
+        setFindeSaveMoviesStore(prev=>[...prev, saveCard])
+        setSaveMoviesStore(prev=>[...prev, saveCard])
       });
     }
     setIsSaved(!isSaved);
   }
   
   const handleDelete = () => {
+    if(saveMoviesCards){
+      setFilms(prev=> prev.map(item =>{
+        if(item._id === card._id){
+          item.inSaved = false;
+        }
+        return item
+      }))
+      setCards(prev=> prev.map(item =>{
+        if(item._id === card._id){
+          item.inSaved = false;
+        }
+        return item
+      }))
+    }
+    card.inSaved = false;
     deliteFilm(card._id)
     deleteSaveMovies(card._id)
   }

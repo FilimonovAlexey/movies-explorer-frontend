@@ -11,15 +11,15 @@ import { useResize } from "../../utils/hooks/UseResize";
 import { CurrentUserContext } from "../App/App"
 
 function Movies(props) {
-  const [cards, setCards] = useState([])
-  const [films, setFilms] = useState([])
+ 
   const [preloader, setPreloader] = useState(false)
   const [counterCard, setCounterCard] = useState(0)
   const [switchCheked, setSwitchCheked] = useState(false)
   const [isOther, setisOther] = useState(false)
   const [durationLength, setDurationLength] = useState(0);
   const { currentScreen } = useResize();
-  const { setSaveMoviesStore } = useContext(CurrentUserContext);
+  const { setSaveMoviesStore,setFindeSaveMoviesStore, cards, setCards, films, setFilms,  } = useContext(CurrentUserContext);
+  const { searchHandler } = props;
 
   useEffect(() => {
     if(switchCheked && durationLength > counterCard){
@@ -52,23 +52,27 @@ function Movies(props) {
   },[currentScreen])
   
   useEffect(() => {
-    setPreloader(true)
-    const fetchData = async () => {
-      const saves = await getSaveMovies();
-      setSaveMoviesStore(saves)
-      const data = await getMovies();
-      const newData = data.map(item => {
-        const isFind = saves.find(obg=> obg.movieId === item.id)
-        const _id = !!isFind ? isFind._id : item.id;
-        return {...item, inSaved: !!isFind, _id: _id }
-      })
-      setCards(newData);
-      setPreloader(false)
+    if(!cards.length){
+      setPreloader(true)
+      const fetchData = async () => {
+        const saves = await getSaveMovies();
+        setSaveMoviesStore(saves)
+        setFindeSaveMoviesStore(saves)
+        const data = await getMovies();
+        const newData = data.map(item => {
+          const isFind = saves.find(obg=> obg.movieId === item.id)
+          const _id = !!isFind ? isFind._id : item.id;
+          return {...item, inSaved: !!isFind, _id: _id }
+        })
+        setCards(newData);
+        setPreloader(false)
+      }
+      fetchData();
     }
-    fetchData();
   }, []);
 
   const findeMovies = (text) => {
+    console.log('findeMovies ', text)
     setPreloader(true)
     if(text.length < 2) {
       setFilms(cards)
@@ -78,6 +82,21 @@ function Movies(props) {
     };
     setPreloader(false)
   }
+
+  useEffect(() => {
+    const settings =  localStorage.getItem("settings");
+    console.log('settings ',settings)
+    if(settings){
+      const obj = JSON.parse(settings);
+      if(obj.searchText.length > 0){
+        searchHandler(obj.searchText)
+        findeMovies(obj.searchText)
+      }
+    } 
+  
+  }, [])
+  
+
 
   const addMoviesCard = () =>{
     let add = 3;

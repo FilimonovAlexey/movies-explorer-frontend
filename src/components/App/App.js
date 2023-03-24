@@ -14,12 +14,23 @@ import { getProfile } from "../../utils/Api/MainApi"
 export const CurrentUserContext = createContext();
 const initUser = {name: '', email: ''}
 function App() {
-  // const navigate = useNavigate();
   const [searchText, setSearchText] = useState('')
   const [user, setUser] = useState(initUser);
   const [logedId, setLogedId] = useState(true);
   const [saveMoviesStore, setSaveMoviesStore] = useState([]);
+  const [findeSaveMoviesStore, setFindeSaveMoviesStore] = useState([]);
+  const [cards, setCards] = useState([])
+  const [films, setFilms] = useState([])
+  
   const searchHandler = (text) =>{
+    const settings =  localStorage.getItem("settings")
+    if(settings){
+      const obj = JSON.parse(settings);
+      obj.searchText = text;
+      localStorage.setItem('settings', JSON.stringify(obj))
+    } else {
+      localStorage.setItem('settings', `{"searchText": "${text}", "shortSwich": "false"}`)
+    }
     setSearchText(text)
   }
 
@@ -44,7 +55,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <CurrentUserContext.Provider value={{ user, setUser, logedId, setLogedId, saveMoviesStore, setSaveMoviesStore }}>
+      <CurrentUserContext.Provider value={{ user, setUser, logedId, setLogedId, saveMoviesStore, setSaveMoviesStore, cards, setCards, films, setFilms, findeSaveMoviesStore, setFindeSaveMoviesStore}}>
         <div className='App'>
           <Routes>
             <Route exact path="/" element={<Main/>} />

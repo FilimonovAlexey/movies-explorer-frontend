@@ -42,9 +42,12 @@ function Profile() {
   }
 
   const signOut = () => {
-    localStorage.removeItem("token");
+    // localStorage.removeItem("token");
+    // localStorage.removeItem("settings");
+    localStorage.clear();
     setLogedId(false);
     navigate("/");
+    window.location.reload();
   }
 
   return(
