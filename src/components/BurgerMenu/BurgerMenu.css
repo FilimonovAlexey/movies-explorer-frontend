@@ -6,8 +6,6 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
-  margin-top: 15px;
-  margin-right: 30px;
 }
 
 .hamburger-menu__button:hover {
@@ -38,13 +36,7 @@
 
 @media screen and (max-width: 769px) {
   .burgermenu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    z-index: 1;
+    display: block;
   }
   
   .hamburger-bg {
