@@ -72,7 +72,6 @@ function Movies(props) {
   }, []);
 
   const findeMovies = (text) => {
-    console.log('findeMovies ', text)
     setPreloader(true)
     if(text.length < 2) {
       setFilms(cards)
@@ -85,7 +84,6 @@ function Movies(props) {
 
   useEffect(() => {
     const settings =  localStorage.getItem("settings");
-    console.log('settings ',settings)
     if(settings){
       const obj = JSON.parse(settings);
       if(obj.searchText.length > 0){
