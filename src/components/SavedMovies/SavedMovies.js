@@ -7,7 +7,15 @@ import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import { getSaveMovies } from "../../utils/Api/MainApi";
 import { useResize } from "../../utils/hooks/UseResize";
 import Preloader from "../Movies/Preloader/Preloader";
-import { CurrentUserContext } from "../App/App"
+import { CurrentUserContext } from "../App/App";
+import {
+  MOVIES_CARDS_1280,
+  MOVIES_CARDS_768,
+  MOVIES_CARDS_480,
+  ADD_MOVIES_CARD_1280,
+  ADD_MOVIES_CARD_768,
+  ADD_MOVIES_CARD_480
+} from "../../utils/Constants/constants"
 
 function SavedMovies(props) {
   const [preloader, setPreloader] = useState(false)
@@ -36,19 +44,19 @@ function SavedMovies(props) {
   useEffect(()=>{
     switch(currentScreen) {
       case 'SCREEN_XXL':
-        setCounterCard(12)
+        setCounterCard(MOVIES_CARDS_1280)
         break;
       case "SCREEN_XL":
-        setCounterCard(12)
+        setCounterCard(MOVIES_CARDS_1280)
         break;
       case "SCREEN_LG":
-        setCounterCard(12)
+        setCounterCard(MOVIES_CARDS_1280)
         break;
       case "SCREEN_MD":
-        setCounterCard(8)
+        setCounterCard(MOVIES_CARDS_768)
         break;
       default:
-        setCounterCard(5)
+        setCounterCard(MOVIES_CARDS_480)
         break;
     }
   },[currentScreen])
@@ -76,11 +84,11 @@ function SavedMovies(props) {
   }
 
   const addMoviesCard = () =>{
-    let add = 3;
+    let add = ADD_MOVIES_CARD_1280;
     if(currentScreen === 'SCREEN_MD'){
-      add = 2
+      add = ADD_MOVIES_CARD_768
     } else if(currentScreen === 'SCREEN_SM'){
-      add = 1
+      add = ADD_MOVIES_CARD_480
     }
     setCounterCard(prev => prev + add)
   }

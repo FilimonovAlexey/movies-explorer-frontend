@@ -1,11 +1,12 @@
 import React from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import { SHORTS_MOVIES_DURATION } from "../../../utils/Constants/constants"
 
 function MoviesCardList({cards, switchCheked, counterCard, setDurationLength, saveMoviesCards, deliteFilm}) {
   let films = cards;
   if(switchCheked){
-    films =  cards.filter(film => film.duration < 41)
+    films =  cards.filter(film => film.duration < SHORTS_MOVIES_DURATION)
     setDurationLength(films.length)
   }
   films = films.filter((a, index)=> index < counterCard)

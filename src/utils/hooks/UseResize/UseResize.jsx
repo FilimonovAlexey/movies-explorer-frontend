@@ -5,7 +5,7 @@ import {
   SCREEN_LG,
   SCREEN_XL,
   SCREEN_XXL,
-} from "./const-breakpoints";
+} from "../../Constants/constants";
 
 export const useResize = () => {
   const [width, setWidth] = useState(window.innerWidth);

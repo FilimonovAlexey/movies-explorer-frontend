@@ -6,7 +6,8 @@ import saveFilmButton from "../../../images/saveFilmButton.svg";
 import saveButton from "../../../images/save__button.svg";
 import { saveMovies } from "../../../utils/Api/MainApi";
 import { deleteSaveMovies } from "../../../utils/Api/MainApi";
-import { CurrentUserContext } from "../../App/App"
+import { CurrentUserContext } from "../../App/App";
+import { DURATION_CONVERT } from "../../../utils/Constants/constants"
 
 function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   const location = useLocation();
@@ -74,7 +75,7 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
                   {isSaved ? <img className="moviesCard__delete" alt="добавлено" src={saveButton} /> :
                       <img className="moviesCard__add" alt="добавить" src={saveFilmButton} />}
               </button>}
-          <p className="moviesCard__duration">{Math.round(card.duration/60)}ч {card.duration - 60*Math.round(card.duration/60)}м</p>
+          <p className="moviesCard__duration">{Math.round(card.duration/DURATION_CONVERT)}ч {card.duration - DURATION_CONVERT*Math.round(card.duration/DURATION_CONVERT)}м</p>
       </div>
     </div>
   );
