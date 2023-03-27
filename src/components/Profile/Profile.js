@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import Header from "../Header/Header";
 import { getProfile, updateProfile } from "../../utils/Api/MainApi"
 import { CurrentUserContext } from "../App/App";
+import { PROFILE_UPDATE_MESSAGE } from "../../utils/Constants/constants"
+
 function Profile() {
-  const { user, setUser, setLogedId } = useContext(CurrentUserContext);
+  const { user, setUser, setLogedId, openPopup } = useContext(CurrentUserContext);
   
   const [profile, setProfile] = useState(user || {name: '', email: ''})
   const [isUpdate, setIsUpdate] = useState(false)
@@ -35,15 +37,14 @@ function Profile() {
     .then(data => {
       setUser(data);
       setProfile(data);
-      console.log("Данные успешно внесены")
-    }).catch(error=>{
-        console.error('handleProfileUpdate error ', error)
+      openPopup(PROFILE_UPDATE_MESSAGE)
+    })
+    .catch(error => {
+      console.error('handleProfileUpdate error ', error)
     });
   }
 
   const signOut = () => {
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("settings");
     localStorage.clear();
     setLogedId(false);
     navigate("/");

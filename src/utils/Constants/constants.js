@@ -20,3 +20,6 @@ export const ADD_MOVIES_CARD_480 = 1;
 
 //Для перевода длительности фильмов в минуты
 export const DURATION_CONVERT = 60;
+
+//Сообщения для пользователя
+export const PROFILE_UPDATE_MESSAGE = "Изменения в профиль успешно внесены!"
