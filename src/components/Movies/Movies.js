@@ -154,6 +154,7 @@ function Movies(props) {
         {preloader && <Preloader />}
         {!preloader && (
           <MoviesCardList
+            {...props}
             cards={films}
             switchCheked={switchCheked}
             counterCard={counterCard}

@@ -42,7 +42,7 @@ function App() {
       obj.searchText = text;
       localStorage.setItem(`settings_${name}`, JSON.stringify(obj))
     } else {
-      localStorage.setItem(`settings_${name}`, `{"searchText": "${text}", "shortSwich": "false"}`)
+      localStorage.setItem(`settings_${name}`, `{"searchText": "${text}", "shortSwich": ${false}}`)
     }
     setSearchText(text)
   }

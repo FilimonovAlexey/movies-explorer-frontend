@@ -126,7 +126,7 @@ function SavedMovies(props) {
        <main className="main__box">
          <SearchForm nameLocal='SaveMoviesSearch' {...props} findeMovies={findeMovies} switchCheked={switchCheked} switchHandler={switchHandler}/>
          {preloader && <Preloader />}
-         {!preloader && <MoviesCardList cards={findeSaveMoviesStore} switchCheked={switchCheked} counterCard={counterCard} setDurationLength={setDurationLength} saveMoviesCards deliteFilm={deliteFilm}/>}
+         {!preloader && <MoviesCardList  {...props} cards={findeSaveMoviesStore} switchCheked={switchCheked} counterCard={counterCard} setDurationLength={setDurationLength} saveMoviesCards deliteFilm={deliteFilm}/>}
          {isOther && <button className="movies__button" onClick={addMoviesCard}>Еще</button>}
        </main>
      <Footer/>
