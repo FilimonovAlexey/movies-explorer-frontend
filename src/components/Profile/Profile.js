@@ -9,7 +9,8 @@ import { PROFILE_UPDATE_MESSAGE } from "../../utils/Constants/constants"
 function Profile() {
   const { user, setUser, setLogedId, openPopup } = useContext(CurrentUserContext);
   
-  const [profile, setProfile] = useState(user || {name: '', email: ''})
+  const [name, setName] = useState(user.name)
+  const [email, setEmail] = useState(user.email)
   const [isUpdate, setIsUpdate] = useState(false)
 
   const navigate = useNavigate();
@@ -18,26 +19,30 @@ function Profile() {
     getProfile()
     .then(data => {
       setUser(data);
-      setProfile(data);
+      setName(data.name)
+      setEmail(data.email)
     }).catch(error=>{
         console.error('getProfile error ', error)
     });
   },[])
 
   useEffect(() => {
-    if((user.name !== profile.name || user.email !== profile.email)){
+    if((user.name !== name || user.email !== email)){
       setIsUpdate(true)
     } else {
       setIsUpdate(false)
     }
-  }, [profile, user])
+  }, [user, email, name])
   
-  const handleProfileUpdate = (user) => {
-    updateProfile(user)
+  const handleProfileUpdate = (name, email) => {
+    updateProfile({name: name, email: email})
     .then(data => {
       setUser(data);
-      setProfile(data);
-      openPopup(PROFILE_UPDATE_MESSAGE)
+      if (data.message) {
+        openPopup(data.message)
+      } else {
+        openPopup(PROFILE_UPDATE_MESSAGE)
+      }
     })
     .catch(error => {
       console.error('handleProfileUpdate error ', error)
@@ -65,9 +70,9 @@ function Profile() {
                         type='text'
                         name='name'
                         placeholder='Имя'
-                        value={profile.name}
+                        value={name}
                         required
-                        onChange={(event)=> setProfile((prev)=>({...prev, name: event.target.value}))}
+                        onChange={(event)=> setName(event.target.value)}
                     />
                 </label>
                 <div className="profile__line"></div>
@@ -76,14 +81,14 @@ function Profile() {
                     <input className='profile__input'
                         type='email'
                         name='email'
-                        value={profile.email}
+                        value={email}
                         placeholder='E-mail'
-                        onChange={(event)=> setProfile((prev)=>({...prev, email: event.target.value}))}
+                        onChange={(event)=> setEmail(event.target.value)}
                         required />
                 </label>
             </fieldset>
             <div className='profile__nav'>
-                <button className='profile__button_edit' type='submit' onClick={()=>handleProfileUpdate(profile)} disabled={!isUpdate}>Редактировать</button>
+                <button className='profile__button_edit' type='submit' onClick={()=>handleProfileUpdate(name, email)} disabled={!isUpdate}>Редактировать</button>
                 <button className='profile__button_signin' onClick={signOut} >Выйти из аккаунта</button>
             </div>
         </form>
