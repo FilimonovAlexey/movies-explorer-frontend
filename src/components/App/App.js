@@ -72,8 +72,22 @@ function App() {
         <div className='App'>
           <Routes>
             <Route exact path="/" element={<Main/>} />
-            <Route exact path="/signin" element={<Login/>} />
-            <Route exact path="/signup" element={<Register openPopup={openPopup}/>} />
+
+            <Route exact path="/signin" 
+                         element={
+                          <ProtectedRoute logedId={!logedId}>
+                           <Login/>
+                          </ProtectedRoute>
+                         } 
+            />
+
+            <Route exact path="/signup" 
+                         element={
+                          <ProtectedRoute logedId={!logedId}>
+                           <Register openPopup={openPopup}/>
+                          </ProtectedRoute>
+                         }
+            />
 
             <Route exact path="/profile" 
                          element={
