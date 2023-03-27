@@ -84,7 +84,7 @@ function App() {
             <Route exact path="/signup" 
                          element={
                           <ProtectedRoute logedId={!logedId}>
-                           <Register openPopup={openPopup}/>
+                           <Register />
                           </ProtectedRoute>
                          }
             />
