@@ -4,7 +4,7 @@ import "./SearchForm.css"
 function SearchForm(props) {
   const [filmDirty, setFilmDirty] = useState(false)
   const [errorMessageFilm, setErrorMessageFilm] = useState('Введите название фильма')
-  const {searchText, searchHandler, findeMovies, setSwitchCheked, switchCheked, nameLocal} = props;
+  const {searchText, searchHandler, findeMovies, switchHandler, switchCheked, nameLocal} = props;
 
   useEffect(() => {
     if(filmDirty && searchText.length){
@@ -31,7 +31,7 @@ function SearchForm(props) {
         </div>
         {(filmDirty && errorMessageFilm) && <div className="error">{errorMessageFilm}</div>}
         <label className="searchform__switch">
-          <input className="searchform__checkbox-input" type="checkbox" onChange={(event)=>setSwitchCheked(event.target.checked)} />
+          <input className="searchform__checkbox-input" type="checkbox" checked={switchCheked} onChange={(event)=>switchHandler(event.target.checked)} />
           <div className="searchform__checkbox-custom"></div>
           <p className="searchform__shorts">Короткометражки</p>
         </label>

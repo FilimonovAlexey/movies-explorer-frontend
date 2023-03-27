@@ -32,6 +32,18 @@ function SavedMovies(props) {
     setFindeSaveMoviesStore(prev=> prev.filter(film=> film._id !== id))
   }
 
+  const switchHandler = (status) => {
+    const settings =  localStorage.getItem("settings_SaveMoviesSearch");
+    if(settings){
+      const obj = JSON.parse(settings);
+      obj.shortSwich = status;
+      localStorage.setItem(`settings_SaveMoviesSearch`, JSON.stringify(obj))
+    } else {
+      localStorage.setItem(`settings_SaveMoviesSearch`, `{"searchText": "", "shortSwich": ${status}}`)
+    }
+    setSwitchCheked(status)
+  }
+
   useEffect(() => {
     if(switchCheked && durationLength > counterCard){
       setisOther(true)
@@ -83,7 +95,7 @@ function SavedMovies(props) {
     }
     setPreloader(false)
   }
-  
+
   useEffect(() => {
     const settings =  localStorage.getItem("settings_SaveMoviesSearch");
     if(settings){
@@ -92,6 +104,7 @@ function SavedMovies(props) {
         searchHandler(obj.searchText, 'SaveMoviesSearch')
         findeMovies(obj.searchText)
       }
+      setSwitchCheked(obj.shortSwich)
     } 
   
   }, [])
@@ -111,7 +124,7 @@ function SavedMovies(props) {
      <>
      <Header/>
        <main className="main__box">
-         <SearchForm nameLocal='SaveMoviesSearch' {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
+         <SearchForm nameLocal='SaveMoviesSearch' {...props} findeMovies={findeMovies} switchCheked={switchCheked} switchHandler={switchHandler}/>
          {preloader && <Preloader />}
          {!preloader && <MoviesCardList cards={findeSaveMoviesStore} switchCheked={switchCheked} counterCard={counterCard} setDurationLength={setDurationLength} saveMoviesCards deliteFilm={deliteFilm}/>}
          {isOther && <button className="movies__button" onClick={addMoviesCard}>Еще</button>}
