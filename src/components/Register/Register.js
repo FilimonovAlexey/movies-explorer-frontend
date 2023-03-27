@@ -4,6 +4,7 @@ import logo from "../../images/logo.svg";
 import { Link, useNavigate  } from "react-router-dom";
 import { signup, signin } from "../../utils/Api/MainApi";
 import { CurrentUserContext } from "../App/App";
+import Popup from "../Popup/Popup";
 
 function Register() {
   const [name, setName] = useState('')
@@ -17,13 +18,13 @@ function Register() {
   const [errorMessageEmail, setErrorMessageEmail] = useState('Введите email')
   const [errorMessagePassword, setErrorMessagePassword] = useState('Введите пароль')
   const [inputValid, setInputValid] = useState(false)
-  const { setLogedId } = useContext(CurrentUserContext);
+  const { setLogedId, openPopup, popupMessage, closePopup } = useContext(CurrentUserContext);
 
   const hendleRegister = async () => {
     signup({name, email, password})
     .then(data => {
-      if(data.statusCode === 400){
-        console.error('hendleRegister error ', data)
+      if(data.message){
+        openPopup(data.message)
       } else {
         signin({email, password})
         .then(data => {
