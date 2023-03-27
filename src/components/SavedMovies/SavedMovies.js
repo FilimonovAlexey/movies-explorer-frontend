@@ -25,6 +25,7 @@ function SavedMovies(props) {
   const [durationLength, setDurationLength] = useState(0);
   const { currentScreen } = useResize();
   const { findeSaveMoviesStore, setFindeSaveMoviesStore, saveMoviesStore, setSaveMoviesStore } = useContext(CurrentUserContext);
+  const { searchHandler } = props;
 
   const deliteFilm = (id) => {
     setSaveMoviesStore(prev=> prev.filter(film=> film._id !== id))
@@ -73,7 +74,7 @@ function SavedMovies(props) {
       fetchData();
     }
   }, []);
-
+  
   const findeMovies = (text) => {
     setPreloader(true)
     if(text.length > 0) {
@@ -82,6 +83,19 @@ function SavedMovies(props) {
     }
     setPreloader(false)
   }
+  
+  useEffect(() => {
+    const settings =  localStorage.getItem("settings_SaveMoviesSearch");
+    if(settings){
+      const obj = JSON.parse(settings);
+      if(obj.searchText.length > 0){
+        searchHandler(obj.searchText, 'SaveMoviesSearch')
+        findeMovies(obj.searchText)
+      }
+    } 
+  
+  }, [])
+
 
   const addMoviesCard = () =>{
     let add = ADD_MOVIES_CARD_1280;
@@ -97,7 +111,7 @@ function SavedMovies(props) {
      <>
      <Header/>
        <main className="main__box">
-         <SearchForm {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
+         <SearchForm nameLocal='SaveMoviesSearch' {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
          {preloader && <Preloader />}
          {!preloader && <MoviesCardList cards={findeSaveMoviesStore} switchCheked={switchCheked} counterCard={counterCard} setDurationLength={setDurationLength} saveMoviesCards deliteFilm={deliteFilm}/>}
          {isOther && <button className="movies__button" onClick={addMoviesCard}>Еще</button>}

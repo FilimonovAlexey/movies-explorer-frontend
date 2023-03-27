@@ -91,11 +91,11 @@ function Movies(props) {
   }
 
   useEffect(() => {
-    const settings =  localStorage.getItem("settings");
+    const settings =  localStorage.getItem("settings_MoviesSearch");
     if(settings){
       const obj = JSON.parse(settings);
       if(obj.searchText.length > 0){
-        searchHandler(obj.searchText)
+        searchHandler(obj.searchText, 'MoviesSearch')
         findeMovies(obj.searchText)
       }
     } 
@@ -118,7 +118,7 @@ function Movies(props) {
     <>
       <Header/>
         <main className="main__box">
-          <SearchForm {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
+          <SearchForm nameLocal='MoviesSearch' {...props} findeMovies={findeMovies} switchCheked={switchCheked} setSwitchCheked={setSwitchCheked}/>
           {preloader && <Preloader />}
           {!preloader && <MoviesCardList cards={films} switchCheked={switchCheked} counterCard={counterCard} setDurationLength={setDurationLength}/>}
           {isOther && <button className="movies__button" onClick={addMoviesCard}>Еще</button>}

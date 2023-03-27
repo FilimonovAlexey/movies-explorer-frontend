@@ -4,7 +4,7 @@ import "./SearchForm.css"
 function SearchForm(props) {
   const [filmDirty, setFilmDirty] = useState(false)
   const [errorMessageFilm, setErrorMessageFilm] = useState('Введите название фильма')
-  const {searchText, searchHandler, findeMovies, setSwitchCheked, switchCheked} = props;
+  const {searchText, searchHandler, findeMovies, setSwitchCheked, switchCheked, nameLocal} = props;
 
   useEffect(() => {
     if(filmDirty && searchText.length){
@@ -23,7 +23,7 @@ function SearchForm(props) {
             className="searchform__input"
             placeholder="Фильм"
             required
-            onChange={(event) => {searchHandler(event.target.value)}}
+            onChange={(event) => {searchHandler(event.target.value, nameLocal)}}
             value={searchText}
             onClick={e =>setFilmDirty(true)}
           />

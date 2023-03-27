@@ -35,14 +35,14 @@ function App() {
     setPopupOpen(true);
   };
   
-  const searchHandler = (text) =>{
-    const settings =  localStorage.getItem("settings")
+  const searchHandler = (text, name) =>{
+    const settings =  localStorage.getItem(`settings_${name}`)
     if(settings){
       const obj = JSON.parse(settings);
       obj.searchText = text;
-      localStorage.setItem('settings', JSON.stringify(obj))
+      localStorage.setItem(`settings_${name}`, JSON.stringify(obj))
     } else {
-      localStorage.setItem('settings', `{"searchText": "${text}", "shortSwich": "false"}`)
+      localStorage.setItem(`settings_${name}`, `{"searchText": "${text}", "shortSwich": "false"}`)
     }
     setSearchText(text)
   }
