@@ -24,7 +24,7 @@ function SavedMovies(props) {
   const [isOther, setisOther] = useState(false)
   const [durationLength, setDurationLength] = useState(0);
   const { currentScreen } = useResize();
-  const { findeSaveMoviesStore, setFindeSaveMoviesStore, saveMoviesStore, setSaveMoviesStore } = useContext(CurrentUserContext);
+  const { findeSaveMoviesStore, setFindeSaveMoviesStore, saveMoviesStore, setSaveMoviesStore, setSearchText } = useContext(CurrentUserContext);
   const { searchHandler } = props;
 
   const deliteFilm = (id) => {
@@ -97,6 +97,7 @@ function SavedMovies(props) {
   }
 
   useEffect(() => {
+    setSearchText('')
     const settings =  localStorage.getItem("settings_SaveMoviesSearch");
     if(settings){
       const obj = JSON.parse(settings);

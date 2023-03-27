@@ -68,7 +68,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <CurrentUserContext.Provider value={{ user, setUser, logedId, setLogedId, saveMoviesStore, setSaveMoviesStore, cards, setCards, films, setFilms, findeSaveMoviesStore, setFindeSaveMoviesStore, openPopup}}>
+      <CurrentUserContext.Provider value={{setSearchText, user, setUser, logedId, setLogedId, saveMoviesStore, setSaveMoviesStore, cards, setCards, films, setFilms, findeSaveMoviesStore, setFindeSaveMoviesStore, openPopup}}>
         <div className='App'>
           <Routes>
             <Route exact path="/" element={<Main/>} />

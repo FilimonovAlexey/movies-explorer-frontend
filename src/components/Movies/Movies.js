@@ -32,6 +32,7 @@ function Movies(props) {
     setCards,
     films,
     setFilms,
+    setSearchText
   } = useContext(CurrentUserContext);
   const { searchHandler } = props;
 
@@ -119,6 +120,7 @@ function Movies(props) {
   };
 
   useEffect(() => {
+    setSearchText('');
     const settings = localStorage.getItem("settings_MoviesSearch");
     if (settings) {
       const obj = JSON.parse(settings);
