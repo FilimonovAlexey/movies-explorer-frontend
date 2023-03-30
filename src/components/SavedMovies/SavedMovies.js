@@ -83,7 +83,6 @@ function SavedMovies(props) {
     if(!data?.length){
       const fetchData = async () => {
         const data = await getSaveMovies();
-        localStorage.setItem(`films_${titleName}`, JSON.stringify(data))
         setSaveMoviesStore(data);
         setFindeSaveMoviesStore(data)
       }
@@ -94,23 +93,11 @@ function SavedMovies(props) {
     }
     setPreloader(false)
     setSearchText('')
-    const settings =  localStorage.getItem(`settings_${titleName}`);
-    if(settings){
-      const obj = JSON.parse(settings);
-      if(obj.searchText.length > 0){
-        searchHandler(obj.searchText, titleName)
-        findeMovies(obj.searchText)
-      }
-      setSwitchCheked(obj.shortSwich)
-    } 
   }, []);
 
   useEffect(() => {
     setLocalStorage(titleName, saveMoviesStore);
   }, [saveMoviesStore])
-
-
-  
   
   const findeMovies = (text) => {
     setPreloader(true)
