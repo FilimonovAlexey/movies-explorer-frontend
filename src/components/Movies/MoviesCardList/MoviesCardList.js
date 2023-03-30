@@ -3,7 +3,7 @@ import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { SHORTS_MOVIES_DURATION } from "../../../utils/Constants/constants"
 
-function MoviesCardList({cards, switchCheked, counterCard, setDurationLength, saveMoviesCards, deliteFilm, searchText}) {
+function MoviesCardList({cards, switchCheked, counterCard, setDurationLength, saveMoviesCards, deliteFilm, searchText, titleName}) {
   let films = cards;
   if(switchCheked){
     films =  cards.filter(film => film.duration < SHORTS_MOVIES_DURATION)

@@ -16,24 +16,46 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   
   function handleClick() {
     if(isSaved){
-      card.inSaved = false;
-      setFindeSaveMoviesStore(prev=> prev.filter(item=> item._id !== card._id))
+      setCards(prev=> prev.map(item=> {
+        if(item._id === card._id){
+          return {...card, inSaved: false}
+        }
+        return item
+      }))
+      setFilms(prev=> prev.map(item =>{
+        if(item._id === card._id){
+          return {...card, inSaved: false}
+        }
+        return item
+      }))
       setSaveMoviesStore(prev=> prev.filter(item=> item._id !== card._id))
       deleteSaveMovies(card._id)
     } else {
-      card.inSaved = true;
-      saveMovies(card).then(data=>{
-        card._id = data._id;
-        const saveCard = {...card, image: `https://api.nomoreparties.co/${card.image.url}`, _id: data._id }
-        setFindeSaveMoviesStore(prev=>[...prev, saveCard])
-        setSaveMoviesStore(prev=>[...prev, saveCard])
-      });
+     
+          saveMovies(card).then(data=>{
+            
+            setCards(prev=> prev.map(item=> {
+              if(data.movieId === item.id){
+                return {...card, inSaved: true, _id: data._id}
+              }
+              return item
+            }))
+            setFilms(prev=> prev.map(item =>{
+              if(data.movieId === item.id){
+                return {...card, inSaved: true, _id: data._id}
+              }
+              return item
+            }))
+            const saveCard = {...card, image: `https://api.nomoreparties.co/${card.image.url}`, _id: data._id }
+            setFindeSaveMoviesStore(prev=>[...prev, saveCard])
+            setSaveMoviesStore(prev=>[...prev, saveCard])
+          });
     }
     setIsSaved(!isSaved);
   }
   
   const handleDelete = () => {
-    if(saveMoviesCards){
+    // if(saveMoviesCards){
       setFilms(prev=> prev.map(item =>{
         if(item._id === card._id){
           item.inSaved = false;
@@ -46,8 +68,8 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
         }
         return item
       }))
-    }
-    card.inSaved = false;
+    // }
+    // card.inSaved = false;
     deliteFilm(card._id)
     deleteSaveMovies(card._id)
   }

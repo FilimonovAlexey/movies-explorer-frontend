@@ -16,6 +16,7 @@ import {
   ADD_MOVIES_CARD_768,
   ADD_MOVIES_CARD_480
 } from "../../utils/Constants/constants"
+import { setLocalStorage, getLocalStorage } from "../../utils/localStorage/localStorage";
 
 function SavedMovies(props) {
   const [preloader, setPreloader] = useState(false)
@@ -26,6 +27,7 @@ function SavedMovies(props) {
   const { currentScreen } = useResize();
   const { findeSaveMoviesStore, setFindeSaveMoviesStore, saveMoviesStore, setSaveMoviesStore, setSearchText } = useContext(CurrentUserContext);
   const { searchHandler } = props;
+  const titleName =  "SaveMoviesSearch";
 
   const deliteFilm = (id) => {
     setSaveMoviesStore(prev=> prev.filter(film=> film._id !== id))
@@ -33,13 +35,13 @@ function SavedMovies(props) {
   }
 
   const switchHandler = (status) => {
-    const settings =  localStorage.getItem("settings_SaveMoviesSearch");
+    const settings =  localStorage.getItem(`settings_${titleName}`);
     if(settings){
       const obj = JSON.parse(settings);
       obj.shortSwich = status;
-      localStorage.setItem(`settings_SaveMoviesSearch`, JSON.stringify(obj))
+      localStorage.setItem(`settings_${titleName}`, JSON.stringify(obj))
     } else {
-      localStorage.setItem(`settings_SaveMoviesSearch`, `{"searchText": "", "shortSwich": ${status}}`)
+      localStorage.setItem(`settings_${titleName}`, `{"searchText": "", "shortSwich": ${status}}`)
     }
     setSwitchCheked(status)
   }
@@ -75,17 +77,40 @@ function SavedMovies(props) {
   },[currentScreen])
   
   useEffect(() => {
-    if(!saveMoviesStore.length){
-      setPreloader(true)
+    setPreloader(true)
+    const data = getLocalStorage(titleName);
+
+    if(!data?.length){
       const fetchData = async () => {
         const data = await getSaveMovies();
+        localStorage.setItem(`films_${titleName}`, JSON.stringify(data))
         setSaveMoviesStore(data);
         setFindeSaveMoviesStore(data)
-        setPreloader(false)
       }
       fetchData();
+    } else {
+      setSaveMoviesStore(data);
+      setFindeSaveMoviesStore(data)
     }
+    setPreloader(false)
+    setSearchText('')
+    const settings =  localStorage.getItem(`settings_${titleName}`);
+    if(settings){
+      const obj = JSON.parse(settings);
+      if(obj.searchText.length > 0){
+        searchHandler(obj.searchText, titleName)
+        findeMovies(obj.searchText)
+      }
+      setSwitchCheked(obj.shortSwich)
+    } 
   }, []);
+
+  useEffect(() => {
+    setLocalStorage(titleName, saveMoviesStore);
+  }, [saveMoviesStore])
+
+
+  
   
   const findeMovies = (text) => {
     setPreloader(true)
@@ -97,16 +122,7 @@ function SavedMovies(props) {
   }
 
   useEffect(() => {
-    setSearchText('')
-    const settings =  localStorage.getItem("settings_SaveMoviesSearch");
-    if(settings){
-      const obj = JSON.parse(settings);
-      if(obj.searchText.length > 0){
-        searchHandler(obj.searchText, 'SaveMoviesSearch')
-        findeMovies(obj.searchText)
-      }
-      setSwitchCheked(obj.shortSwich)
-    } 
+    
   
   }, [])
 
@@ -120,14 +136,15 @@ function SavedMovies(props) {
     }
     setCounterCard(prev => prev + add)
   }
+  
 
   return(
      <>
      <Header/>
        <main className="main__box">
-         <SearchForm nameLocal='SaveMoviesSearch' {...props} findeMovies={findeMovies} switchCheked={switchCheked} switchHandler={switchHandler}/>
+         <SearchForm nameLocal={titleName} {...props} findeMovies={findeMovies} switchCheked={switchCheked} switchHandler={switchHandler}/>
          {preloader && <Preloader />}
-         {!preloader && <MoviesCardList  {...props} cards={findeSaveMoviesStore} switchCheked={switchCheked} counterCard={counterCard} setDurationLength={setDurationLength} saveMoviesCards deliteFilm={deliteFilm}/>}
+         {!preloader && <MoviesCardList titleName={titleName}  {...props} cards={findeSaveMoviesStore} switchCheked={switchCheked} counterCard={counterCard} setDurationLength={setDurationLength} saveMoviesCards deliteFilm={deliteFilm}/>}
          {isOther && <button className="movies__button" onClick={addMoviesCard}>Еще</button>}
        </main>
      <Footer/>

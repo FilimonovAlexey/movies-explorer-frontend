@@ -17,12 +17,14 @@ import {
   ADD_MOVIES_CARD_768,
   ADD_MOVIES_CARD_480,
 } from "../../utils/Constants/constants";
+import { getLocalStorage, setLocalStorage } from "../../utils/localStorage/localStorage";
 
 function Movies(props) {
   const [preloader, setPreloader] = useState(false);
   const [counterCard, setCounterCard] = useState(0);
   const [switchCheked, setSwitchCheked] = useState(false);
   const [isOther, setisOther] = useState(false);
+  const [flag, setFlag] = useState(false);
   const [durationLength, setDurationLength] = useState(0);
   const { currentScreen } = useResize();
   const {
@@ -35,15 +37,16 @@ function Movies(props) {
     setSearchText
   } = useContext(CurrentUserContext);
   const { searchHandler } = props;
+  const titleName =  "MoviesSearch";
 
   const switchHandler = (status) => {
-    const settings =  localStorage.getItem("settings_MoviesSearch");
+    const settings =  localStorage.getItem(`settings_${titleName}`);
     if(settings){
       const obj = JSON.parse(settings);
       obj.shortSwich = status;
-      localStorage.setItem(`settings_MoviesSearch`, JSON.stringify(obj))
+      localStorage.setItem(`settings_${titleName}`, JSON.stringify(obj))
     } else {
-      localStorage.setItem(`settings_MoviesSearch`, `{"searchText": "", "shortSwich": ${status}}`)
+      localStorage.setItem(`settings_${titleName}`, `{"searchText": "", "shortSwich": ${status}}`)
     }
     setSwitchCheked(status);
   };
@@ -86,21 +89,49 @@ function Movies(props) {
     if (!cards.length) {
       setPreloader(true);
       const fetchData = async () => {
-        const saves = await getSaveMovies();
-        setSaveMoviesStore(saves);
-        setFindeSaveMoviesStore(saves);
-        const data = await getMovies();
-        const newData = data.map((item) => {
-          const isFind = saves.find((obg) => obg.movieId === item.id);
-          const _id = !!isFind ? isFind._id : item.id;
-          return { ...item, inSaved: !!isFind, _id: _id };
-        });
-        setCards(newData);
+        const MoviesSearchData = await getLocalStorage(titleName);
+      
+        if(!MoviesSearchData?.length){
+          const saves = await getSaveMovies();
+          const data = await getMovies();
+          setSaveMoviesStore(saves);
+          setFindeSaveMoviesStore(saves);
+          
+            const newData = data.map((item) => {
+              const isFind = saves.find((obg) => obg.movieId === item.id);
+              const _id = !!isFind ? isFind._id : item.id;
+              return { ...item, inSaved: !!isFind, _id: _id };
+          });
+         
+          setCards(newData);
+        } else {
+          setCards(MoviesSearchData);
+          setFlag(true);
+        }
         setPreloader(false);
       };
       fetchData();
     }
   }, []);
+  
+  useEffect(() => {
+    setLocalStorage(titleName, cards);
+  }, [cards])
+
+  useEffect(() => {
+    if(flag){
+      setSearchText('');
+      const settings = localStorage.getItem(`settings_${titleName}`);
+      if (settings) {
+        const obj = JSON.parse(settings);
+        if (obj.searchText.length > 0) {
+          searchHandler(obj.searchText, titleName);
+          findeMovies(obj.searchText);
+        }
+        setSwitchCheked(obj.shortSwich);
+      }
+    }
+  }, [flag])
 
   const findeMovies = (text) => {
     setPreloader(true);
@@ -119,18 +150,6 @@ function Movies(props) {
     setPreloader(false);
   };
 
-  useEffect(() => {
-    setSearchText('');
-    const settings = localStorage.getItem("settings_MoviesSearch");
-    if (settings) {
-      const obj = JSON.parse(settings);
-      if (obj.searchText.length > 0) {
-        searchHandler(obj.searchText, "MoviesSearch");
-        findeMovies(obj.searchText);
-      }
-      setSwitchCheked(obj.shortSwich);
-    }
-  }, []);
 
   const addMoviesCard = () => {
     let add = ADD_MOVIES_CARD_1280;
@@ -147,7 +166,7 @@ function Movies(props) {
       <Header />
       <main className="main__box">
         <SearchForm
-          nameLocal="MoviesSearch"
+          nameLocal={titleName}
           {...props}
           findeMovies={findeMovies}
           switchCheked={switchCheked}
@@ -157,6 +176,7 @@ function Movies(props) {
         {!preloader && (
           <MoviesCardList
             {...props}
+            titleName={titleName}
             cards={films}
             switchCheked={switchCheked}
             counterCard={counterCard}
