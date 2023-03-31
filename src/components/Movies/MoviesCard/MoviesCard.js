@@ -8,6 +8,7 @@ import { saveMovies } from "../../../utils/Api/MainApi";
 import { deleteSaveMovies } from "../../../utils/Api/MainApi";
 import { CurrentUserContext } from "../../App/App";
 import { DURATION_CONVERT } from "../../../utils/Constants/constants"
+import { setLocalStorage } from "../../../utils/localStorage/localStorage";
 
 function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   const location = useLocation();
@@ -17,12 +18,15 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   function handleClick() {
     if(isSaved){
 
-
-      // console.log('handleClick isSaved', card)
       setCards(prev=> prev.map(item=> item.id === card.id ? {...item, inSaved: false} : item))
       setFilms(prev=> prev.map(item=> item.id === card.id ? {...item, inSaved: false} : item))
       
-      setSaveMoviesStore(prev=> prev.filter(item=> item.id !== card.id))
+      setSaveMoviesStore(prev=> {
+        const newData = prev.filter(item=> item.id !== card.id)
+        setLocalStorage("SaveMoviesSearch", newData)
+        return newData
+      })
+      setFindeSaveMoviesStore(prev => prev.filter(item=> item.id !== card.id))
       deleteSaveMovies(card._id)
     } else {
      
@@ -30,7 +34,6 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
             
             setCards(prev=> prev.map(item=> {
               if(data.movieId === item.id){
-                // console.log('handleClick', [card, data, item])
                 return {...item, inSaved: true, _id: data._id}
               }
               return item

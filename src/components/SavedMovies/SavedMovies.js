@@ -81,15 +81,6 @@ function SavedMovies(props) {
   useEffect(() => {
     setPreloader(true)
     const data = getLocalStorage(titleName);
-
-    // if(!data?.length){
-    //   const fetchData = async () => {
-    //     const data = await getSaveMovies();
-    //     setSaveMoviesStore(data);
-    //     setFindeSaveMoviesStore(data)
-    //   }
-    //   fetchData();
-    // } else {
     if(!data?.length && saveMoviesStore.length === 0){
       const fetchData = async () => {
         const saves = await getSaveMovies();
