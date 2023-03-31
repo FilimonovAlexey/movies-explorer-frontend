@@ -3,7 +3,7 @@ import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import { SHORTS_MOVIES_DURATION } from "../../../utils/Constants/constants"
 
-function MoviesCardList({cards, switchCheked, counterCard, setDurationLength, saveMoviesCards, deliteFilm, searchText, titleName}) {
+function MoviesCardList({cards, switchCheked, counterCard, setDurationLength, saveMoviesCards, deliteFilm, searchText, titleName, isSearch}) {
   let films = cards;
   if(switchCheked){
     films =  cards.filter(film => film.duration < SHORTS_MOVIES_DURATION)
@@ -16,7 +16,7 @@ function MoviesCardList({cards, switchCheked, counterCard, setDurationLength, sa
       <div className="movieCardList__box">
         {films.length ? films.map((card) => (
             <MoviesCard key={card.id} card={card} saveMoviesCards={saveMoviesCards} deliteFilm={deliteFilm} />
-        )) : searchText.length > 0 ? <>Ничего не найдено!</>: ''}
+        )) : isSearch ? <>Ничего не найдено!</>: ''}
       </div>
     </section>
   );

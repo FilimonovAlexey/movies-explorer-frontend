@@ -12,7 +12,6 @@ function SearchForm(props) {
     }
   }, [searchText, filmDirty])
   
-
   return (
       <form noValidate className="searchform" onSubmit={(e)=>{e.preventDefault()}}>
         <div className="searchform__block">
@@ -35,7 +34,6 @@ function SearchForm(props) {
           <div className="searchform__checkbox-custom"></div>
           <p className="searchform__shorts">Короткометражки</p>
         </label>
-
       </form>
   );
 }

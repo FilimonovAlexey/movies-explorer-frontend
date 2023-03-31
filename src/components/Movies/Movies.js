@@ -26,6 +26,7 @@ function Movies(props) {
   const [switchCheked, setSwitchCheked] = useState(false);
   const [isOther, setisOther] = useState(false);
   const [flag, setFlag] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
   const [durationLength, setDurationLength] = useState(0);
   const { currentScreen } = useResize();
   const {
@@ -158,6 +159,7 @@ function Movies(props) {
         )
       );
     }
+    setIsSearch(true);
     setPreloader(false);
   };
 
@@ -192,6 +194,7 @@ function Movies(props) {
             switchCheked={switchCheked}
             counterCard={counterCard}
             setDurationLength={setDurationLength}
+            isSearch={isSearch}
           />
         )}
         {isOther && (
