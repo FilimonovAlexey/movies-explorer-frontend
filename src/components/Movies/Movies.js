@@ -87,6 +87,14 @@ function Movies(props) {
   }, [currentScreen]);
 
   useEffect(() => {
+    const searchSetings = getLocalStorage(`settings_${titleName}`);
+    if(searchSetings?.searchText){
+      setSearchText(searchSetings.searchText)
+      
+    }
+    if(searchSetings?.shortSwich){
+      setSwitchCheked(searchSetings.shortSwich)
+    }
     
     if (!cards.length) {
       setPreloader(true);
@@ -102,7 +110,6 @@ function Movies(props) {
           
             const newData = data.map((item) => {
               const isFind = saves.find((obg) => obg.movieId === item.id);
-              // const _id = !!isFind ? isFind._id : item.id;
               return { ...item, inSaved: !!isFind };
           });
          
