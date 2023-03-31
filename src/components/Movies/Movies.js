@@ -18,6 +18,7 @@ import {
   ADD_MOVIES_CARD_480,
 } from "../../utils/Constants/constants";
 import { getLocalStorage, setLocalStorage } from "../../utils/localStorage/localStorage";
+import { convertSaveMoviesData } from "../../scripts/convertSaveMoviesData";
 
 function Movies(props) {
   const [preloader, setPreloader] = useState(false);
@@ -86,6 +87,7 @@ function Movies(props) {
   }, [currentScreen]);
 
   useEffect(() => {
+    
     if (!cards.length) {
       setPreloader(true);
       const fetchData = async () => {
@@ -94,13 +96,14 @@ function Movies(props) {
         if(!MoviesSearchData?.length){
           const saves = await getSaveMovies();
           const data = await getMovies();
-          setSaveMoviesStore(saves);
-          setFindeSaveMoviesStore(saves);
+          const convertSaves = await convertSaveMoviesData(data, saves)
+          setSaveMoviesStore(convertSaves);
+          setFindeSaveMoviesStore(convertSaves);
           
             const newData = data.map((item) => {
               const isFind = saves.find((obg) => obg.movieId === item.id);
-              const _id = !!isFind ? isFind._id : item.id;
-              return { ...item, inSaved: !!isFind, _id: _id };
+              // const _id = !!isFind ? isFind._id : item.id;
+              return { ...item, inSaved: !!isFind };
           });
          
           setCards(newData);
@@ -112,6 +115,7 @@ function Movies(props) {
       };
       fetchData();
     }
+    
   }, []);
   
   useEffect(() => {

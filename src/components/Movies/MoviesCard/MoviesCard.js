@@ -16,19 +16,13 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   
   function handleClick() {
     if(isSaved){
-      setCards(prev=> prev.map(item=> {
-        if(item._id === card._id){
-          return {...card, inSaved: false}
-        }
-        return item
-      }))
-      setFilms(prev=> prev.map(item =>{
-        if(item._id === card._id){
-          return {...card, inSaved: false}
-        }
-        return item
-      }))
-      setSaveMoviesStore(prev=> prev.filter(item=> item._id !== card._id))
+
+
+      // console.log('handleClick isSaved', card)
+      setCards(prev=> prev.map(item=> item.id === card.id ? {...item, inSaved: false} : item))
+      setFilms(prev=> prev.map(item=> item.id === card.id ? {...item, inSaved: false} : item))
+      
+      setSaveMoviesStore(prev=> prev.filter(item=> item.id !== card.id))
       deleteSaveMovies(card._id)
     } else {
      
@@ -36,17 +30,20 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
             
             setCards(prev=> prev.map(item=> {
               if(data.movieId === item.id){
-                return {...card, inSaved: true, _id: data._id}
+                // console.log('handleClick', [card, data, item])
+                return {...item, inSaved: true, _id: data._id}
               }
               return item
             }))
+
             setFilms(prev=> prev.map(item =>{
               if(data.movieId === item.id){
-                return {...card, inSaved: true, _id: data._id}
+                return {...item, inSaved: true, _id: data._id}
               }
               return item
             }))
-            const saveCard = {...card, image: `https://api.nomoreparties.co/${card.image.url}`, _id: data._id }
+            const saveCard = {...data, id: data.movieId, image: card.image }
+
             setFindeSaveMoviesStore(prev=>[...prev, saveCard])
             setSaveMoviesStore(prev=>[...prev, saveCard])
           });
@@ -57,13 +54,13 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
   const handleDelete = () => {
     // if(saveMoviesCards){
       setFilms(prev=> prev.map(item =>{
-        if(item._id === card._id){
+        if(item.id === card.id){
           item.inSaved = false;
         }
         return item
       }))
       setCards(prev=> prev.map(item =>{
-        if(item._id === card._id){
+        if(item.id === card.id){
           item.inSaved = false;
         }
         return item
@@ -73,8 +70,8 @@ function MoviesCard({card, saveMoviesCards, deliteFilm}) {
     deliteFilm(card._id)
     deleteSaveMovies(card._id)
   }
-
-  let src = saveMoviesCards ? card.image : `https://api.nomoreparties.co/${card.image.url}`;
+  let src = `https://api.nomoreparties.co/${card.image.url}`;
+  // let src = saveMoviesCards ? card.image : `https://api.nomoreparties.co/${card.image.url}`;
 
   return(
     <div className="moviesCard">

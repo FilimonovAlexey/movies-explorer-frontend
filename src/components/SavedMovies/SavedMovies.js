@@ -17,6 +17,8 @@ import {
   ADD_MOVIES_CARD_480
 } from "../../utils/Constants/constants"
 import { setLocalStorage, getLocalStorage } from "../../utils/localStorage/localStorage";
+import { getMovies } from "../../utils/Api/ApiFilm";
+import { convertSaveMoviesData } from "../../scripts/convertSaveMoviesData";
 
 function SavedMovies(props) {
   const [preloader, setPreloader] = useState(false)
@@ -80,16 +82,26 @@ function SavedMovies(props) {
     setPreloader(true)
     const data = getLocalStorage(titleName);
 
-    if(!data?.length){
+    // if(!data?.length){
+    //   const fetchData = async () => {
+    //     const data = await getSaveMovies();
+    //     setSaveMoviesStore(data);
+    //     setFindeSaveMoviesStore(data)
+    //   }
+    //   fetchData();
+    // } else {
+    if(!data?.length && saveMoviesStore.length === 0){
       const fetchData = async () => {
-        const data = await getSaveMovies();
-        setSaveMoviesStore(data);
-        setFindeSaveMoviesStore(data)
+        const saves = await getSaveMovies();
+          const data = await getMovies();
+          const convertSaves = await convertSaveMoviesData(data, saves)
+        setSaveMoviesStore(convertSaves);
+        setFindeSaveMoviesStore(convertSaves)
       }
       fetchData();
-    } else {
-      setSaveMoviesStore(data);
-      setFindeSaveMoviesStore(data)
+    } else if(data?.length && saveMoviesStore.length === 0 ) {
+    setSaveMoviesStore(data);
+    setFindeSaveMoviesStore(data)
     }
     setPreloader(false)
     setSearchText('')
@@ -107,11 +119,6 @@ function SavedMovies(props) {
     }
     setPreloader(false)
   }
-
-  useEffect(() => {
-    
-  
-  }, [])
 
 
   const addMoviesCard = () =>{
