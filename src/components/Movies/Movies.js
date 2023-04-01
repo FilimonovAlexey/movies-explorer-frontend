@@ -51,6 +51,7 @@ function Movies(props) {
       localStorage.setItem(`settings_${titleName}`, `{"searchText": "", "shortSwich": ${status}}`)
     }
     setSwitchCheked(status);
+    setIsSearch(true);
   };
 
   useEffect(() => {

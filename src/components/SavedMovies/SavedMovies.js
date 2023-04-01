@@ -38,6 +38,7 @@ function SavedMovies(props) {
 
   const switchHandler = (status) => {
     setSwitchCheked(status)
+    setIsSearch(true)
   }
 
   useEffect(() => {

@@ -16,7 +16,7 @@ function MoviesCardList({cards, switchCheked, counterCard, setDurationLength, sa
       <div className="movieCardList__box">
         {films.length ? films.map((card) => (
             <MoviesCard key={card.id} card={card} saveMoviesCards={saveMoviesCards} deliteFilm={deliteFilm} />
-        )) : (isSearch || titleName === "SaveMoviesSearch")? <>Ничего не найдено!</>: ''}
+        )) : isSearch ? <>Ничего не найдено!</>: ''}
       </div>
     </section>
   );
