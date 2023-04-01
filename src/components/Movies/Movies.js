@@ -91,7 +91,7 @@ function Movies(props) {
     const searchSetings = getLocalStorage(`settings_${titleName}`);
     if(searchSetings?.searchText){
       setSearchText(searchSetings.searchText)
-      
+      setIsSearch(true)
     }
     if(searchSetings?.shortSwich){
       setSwitchCheked(searchSetings.shortSwich)
