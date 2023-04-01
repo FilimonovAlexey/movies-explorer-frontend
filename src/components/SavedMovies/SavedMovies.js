@@ -29,7 +29,6 @@ function SavedMovies(props) {
   const [isSearch, setIsSearch] = useState(false);
   const { currentScreen } = useResize();
   const { findeSaveMoviesStore, setFindeSaveMoviesStore, saveMoviesStore, setSaveMoviesStore, setSearchText } = useContext(CurrentUserContext);
-  const { searchHandler } = props;
   const titleName =  "SaveMoviesSearch";
 
   const deliteFilm = (id) => {
@@ -38,14 +37,6 @@ function SavedMovies(props) {
   }
 
   const switchHandler = (status) => {
-    const settings =  localStorage.getItem(`settings_${titleName}`);
-    if(settings){
-      const obj = JSON.parse(settings);
-      obj.shortSwich = status;
-      localStorage.setItem(`settings_${titleName}`, JSON.stringify(obj))
-    } else {
-      localStorage.setItem(`settings_${titleName}`, `{"searchText": "", "shortSwich": ${status}}`)
-    }
     setSwitchCheked(status)
   }
 
@@ -82,7 +73,7 @@ function SavedMovies(props) {
   useEffect(() => {
     setPreloader(true)
     const data = getLocalStorage(titleName);
-    if(!data?.length && saveMoviesStore.length === 0){
+    if(!data?.length && findeSaveMoviesStore.length === 0){
       const fetchData = async () => {
         const saves = await getSaveMovies();
           const data = await getMovies();
@@ -91,7 +82,7 @@ function SavedMovies(props) {
         setFindeSaveMoviesStore(convertSaves)
       }
       fetchData();
-    } else if(data?.length && saveMoviesStore.length === 0 ) {
+    } else if(data?.length && findeSaveMoviesStore.length === 0 ) {
     setSaveMoviesStore(data);
     setFindeSaveMoviesStore(data)
     }

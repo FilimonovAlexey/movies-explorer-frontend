@@ -36,13 +36,16 @@ function App() {
   };
   
   const searchHandler = (text, name) =>{
-    const settings =  localStorage.getItem(`settings_${name}`)
-    if(settings){
-      const obj = JSON.parse(settings);
-      obj.searchText = text;
-      localStorage.setItem(`settings_${name}`, JSON.stringify(obj))
-    } else {
-      localStorage.setItem(`settings_${name}`, `{"searchText": "${text}", "shortSwich": ${false}}`)
+    
+    if(name === 'MoviesSearch'){
+      const settings =  localStorage.getItem(`settings_${name}`)
+      if(settings){
+        const obj = JSON.parse(settings);
+        obj.searchText = text;
+        localStorage.setItem(`settings_${name}`, JSON.stringify(obj))
+      } else {
+        localStorage.setItem(`settings_${name}`, `{"searchText": "${text}", "shortSwich": ${false}}`)
+      }
     }
     setSearchText(text)
   }
