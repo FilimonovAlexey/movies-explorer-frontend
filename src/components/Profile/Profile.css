@@ -1,0 +1,157 @@
+.profile {
+  background-color: #FFFFFF;
+}
+
+.profile__content {
+  max-width: 410px;
+  width: 100%;
+  padding: 74px 0 70px 0;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile__title {
+  margin: 0;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000000;
+}
+
+.profile__form {
+  display: flex;
+  padding-top: 123px;
+  flex-direction: column;
+  height: 100%;
+}
+
+.profile__fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile__input-name {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.profile__fields {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: fit-content;
+}
+
+.profile__input {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: #000000;
+  text-align: right;
+  border: none;
+  width: 90%;
+}
+
+.profile__line {
+  width: 410px;
+  border-bottom: 1px solid #E8E8E8;
+  margin: 16px 0 17px 0;
+}
+
+.profile__input-email {
+  margin: 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.profile__nav {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  padding-top: 220px;
+}
+
+.profile__button_edit {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.profile__button_edit:hover {
+  opacity: 0.7;
+}
+
+.profile__button_edit:disabled {
+  opacity: 0.2;
+}
+
+.profile__button_signin {
+  border: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #EE3465;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.profile__button_signin:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 769px) {
+  .profile__content {
+    padding: 236px 0 269px 0;
+  }
+
+  .profile__form {
+    padding-top: 96px;
+  }
+
+  .profile__nav {
+    padding-top: 210px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .profile__content {
+    padding: 70px 0 40px 0;
+    max-width: 260px;
+  }
+
+  .profile__form {
+    padding-top: 80px;
+  }
+
+  .profile__nav {
+    padding-top: 379px;
+  }
+
+  .profile__line {
+    width: 260px;
+  }
+
+  .profile__input {
+    width: 80%;
+  }
+}

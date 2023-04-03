@@ -1,0 +1,197 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  padding: 70px 0 0 0;
+  background-color: #FFFFFF;
+}
+
+.register__box {
+  display: flex;
+  flex-direction: column;
+  width: 396px;
+  margin: 0 auto;
+}
+
+.register__logo-box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.register__logo {
+  width: 38px;
+  height: 38px;
+}
+
+.register__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  display: flex;
+  margin: 0;
+  padding: 40px 0 40px 0;
+}
+
+.register__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register__field {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-bottom: 134px;
+}
+
+.register__name {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+}
+
+.register__email {
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+  padding-top: 24px;
+}
+
+.register__password {
+  display: block;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+  padding-top: 24px;
+}
+
+.register__input {
+  display: flex;
+  width: 100%;
+  border: none;
+  padding: 5px 0 10px 0;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  align-items: center;
+  outline: 0;
+}
+
+.register__input:invalid {
+  border-bottom: 1px solid #EE3465;
+}
+
+.register__input:valid {
+  border-bottom: 1px solid #2BE080;
+}
+
+.error__register {
+  color: #EE3465;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.register__button {
+  background-color: #2BE080;
+  border: none;
+  border-radius: 3px;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 16px;
+  padding: 13px 0 15px 0;
+  cursor: pointer;
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.register__button:hover {
+  opacity: 0.7;
+}
+
+.register__button:disabled {
+  background-color: #A0A0A0;
+  opacity: 0.3;
+}
+
+.register__link {
+  display: block;
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #A0A0A0;
+  padding-top: 16px;
+}
+
+.register__login {
+  padding: 0 0 0 6px;
+  color: #2BE080;
+}
+
+.register__login:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 769px){
+  .register{
+    padding: 232px 0 232px 0;
+  }
+}
+
+@media screen and (max-width: 525px){
+  .register {
+    padding: 56px 0 30px 0;
+  }
+
+  .register__box {
+    width: 260px;
+  }
+
+  .register__logo-box {
+    justify-content: center;
+  }
+
+  .register__title {
+    padding: 50px 0 80px 0;
+    justify-content: center;
+  }
+
+  .register__field {
+    padding-bottom: 240px;
+  }
+
+  .register__button {
+    width: 260px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .register__button-box {
+    margin: auto;
+  }
+
+  .register__link {
+    padding-top: 14px;
+    font-size: 12px;
+    line-height: 15px;
+  }  
+}
